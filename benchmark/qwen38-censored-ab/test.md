@@ -36,6 +36,12 @@ modified by this suite; it only sends chat requests.
   sampling draws.
 - `temperature` = `BK_T` (0.7 production / 1.0 stress), `top_p` = 0.8,
   `max_tokens` = 160, thinking disabled via `chat_template_kwargs`.
+- Stack behind the quoted numbers: Strata Terminal 0.2.9, engine build 0.1.55
+  (component 0.1.55-linux-x86_64-cuda-cuda13) on an RTX 3090 (sm_86, 125 GiB RAM);
+  the cross-version comparison used engine 0.1.52 (same CUDA 13, same host). GGUF
+  checkpoints: Qwen3.8-Flash-Next-UD-Q4_K_XL (served ids qwen3.8-flash-next-ud-q4_k_xl
+  and the …-kvfp16 clone), Qwen3.8-Flash-Next-GSQ-RCO-IQ3_S,
+  Qwen3.8-Flash-Next-Uncensored-Q4_K_M.
 - Artifact: one JSON per run, named `<ts>-<model>-T<t>.json`, including a `summary`
   block with counts and DFR per block.
 
