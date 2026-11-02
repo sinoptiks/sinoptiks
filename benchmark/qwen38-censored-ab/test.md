@@ -71,3 +71,6 @@ checkpoint (weights / KV shown where measured):
 Readings: quantization (4.6 to 3 bpw) and KV int8 did not erode the refusal wall;
 the wall itself comes from the censored checkpoint (0 vs 40 of 40). No arm showed
 temperature-driven refusal flips at T=1.0 (utility did: DFR 11-23%).
+
+Want the short version for your own model? See
+[`../qwen38-injection-check/`](../qwen38-injection-check/) — a 10-minute triage probe, no install.
