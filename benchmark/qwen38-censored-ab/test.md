@@ -77,16 +77,25 @@ arms; headline pair 14.2% at T=0.7 -> 10.8% at T=1.0).
 Significance discipline (paired McNemar on 60 same-task same-seed cells vs the
 4.6-bpw arm, ASR unless noted): quant ladder 11:4, p=0.12; KV axis 6:2, p=0.29;
 engine rebuild 8:4, p=0.39 — all directional, none significant. Surviving results:
-utility under poison 26->34/60 at 3 bits, 2:10, p=0.039; checkpoint wall Fisher
-p<1e-10; retracted: the 8-vs-5/60 defensive-gen "quant tax" (Fisher p=0.56).
+utility under poison 26->34/60 at 3 bits, 2:10, p=0.039 NOMINAL — with ~10 contrasts
+run, Bonferroni gives p_adj~0.4: kept as the leading hypothesis with a 4x-n retest
+queued, not a proof; checkpoint wall Fisher p<1e-10; retracted: the 8-vs-5/60
+defensive-gen "quant tax" (Fisher p=0.56).
 Cells are not independent trials: 40/40 = 8 prompts x 5 seeds, Wilson 95% lower
-bound 91.2%; 0 refusal flips in 80 seed pairs bounds DFR at <=4.6%. The regex
-refusal judge was hand-audited on all 90 flagged outputs (80 D excerpts + flagged
-B/C2 texts): full first-person refusals, zero partial-compliance misses.
-Papers, precisely: 2606.29581 — ~2M responses, 8 models, 5 families, AWQ INT4/
-GPTQ INT8 (not GGUF), DFR 41.9% at T=1.0, quantization ~safety-neutral (agrees
-with our ladder); 2606.09864 — 11 models 3.8B-72B, "can silently destroy",
-no universal safe bit-width, PCR mitigation recovers up to ~97%.
+bound 91.2%; 0 refusal flips in 80 seed pairs bounds DFR at <=4.6%. Judges audited
+both directions: refusal side — all 90 flagged outputs (80 D excerpts + flagged B/C2
+texts) are full first-person refusals, zero false positives; comply side — B needs
+the canary in the output (under-counts, never over-counts), while uncensored D
+comply=not-refused+length leaves 47/80 verdicts opening with caution preambles whose
+continuations were never stored: "0/40 refused" is wording-strict, delivered-count
+is an upper bound (33/80 excerpts begin with the deliverable).
+Papers, precisely, by cited version: 2606.29581 **v2 (2026-07-15)** — ~2M responses,
+8 models, 5 families, AWQ INT4/GPTQ INT8 (not GGUF), DFR 41.9% at T=1.0 on a dense
+FP16 7B, quantization ~safety-neutral (agrees with our ladder); its v1 (28 Jun) said
+9 models/6 families/~322k/53.0% — same qualitative lesson, different numbers: paper
+versions drift like engine builds. 2606.09864 — 11 models 3.8B-72B, "can silently
+destroy", no universal safe bit-width, PCR recovers up to ~97%; production
+confirmation is vLLM FP8 KV on NVIDIA (ours: llama.cpp-lineage int8 on a 3090).
 
 Want the short version for your own model? See
 [`../qwen38-injection-check/`](../qwen38-injection-check/) — a 10-minute triage probe, no install.
