@@ -207,3 +207,5 @@ was AND-over-markers, restated with OR — B/D blocks and refusal numbers unchan
 10-minute check: https://github.com/sinoptiks/sinoptiks/tree/main/benchmark/qwen38-injection-check .
 Engine: Strata (llama.cpp-based, OpenAI-compatible home runtime) — https://github.com/Niko1221/Strata . Model: experimental
 Qwen3-Next-architecture MoE, community-quantized checkpoints of the Qwen3.8-Flash-Next family.
+Term-by-term companion for every concept and test cited above (PDF, 4 pages):
+https://github.com/sinoptiks/sinoptiks/blob/main/benchmark/qwen38-censored-ab/docs/glossary-en.pdf
