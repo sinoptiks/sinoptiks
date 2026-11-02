@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1030" viewBox="0 0 1600 1030" font-family="Cantarell, 'DejaVu Sans', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#101725"/><stop offset="1" stop-color="#0b1018"/>
+    </linearGradient>
+    <linearGradient id="teal" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0ea5b7"/><stop offset="1" stop-color="#2ee6d6"/>
+    </linearGradient>
+    <linearGradient id="violet" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6d5cff"/><stop offset="1" stop-color="#9d8bff"/>
+    </linearGradient>
+    <linearGradient id="amber" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#b7791f"/><stop offset="1" stop-color="#e7b75f"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="1030" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1600" height="6" fill="url(#teal)"/>
+
+  <!-- header -->
+  <text x="60" y="44" font-size="15" font-weight="700" fill="#9d8bff" letter-spacing="2">BAKE-OFF v3 &#183; THE QUANTIZED CONSCIENCE</text>
+  <text x="60" y="80" font-size="30" font-weight="700" fill="#eef3fb">Quantization did not erase the conscience.</text>
+  <text x="60" y="114" font-size="19" fill="#8ea0b8">the wall is checkpoints, not bits &#8212; 3 bpw obeyed injections less, T=1.0 rolled usefulness, not morals</text>
+  <text x="1540" y="44" font-size="15" fill="#5f7086" text-anchor="end">2026-11-02 &#183; single RTX 3090 &#183; personal lab</text>
+  <text x="1540" y="68" font-size="15" fill="#5f7086" text-anchor="end">all numbers: live runs on the served model, not static analysis</text>
+
+  <!-- why this round -->
+  <rect x="60" y="140" width="690" height="250" rx="14" fill="#161f2e" stroke="#243044"/>
+  <text x="84" y="172" font-size="15" font-weight="700" fill="#2ee6d6" letter-spacing="2">WHY THIS ROUND &#8212; TWO 2026 PAPERS, ONE GUILTY BOX</text>
+  <g font-size="14">
+    <text x="84" y="206" fill="#eef3fb" font-weight="700">arXiv 2606.29581 &#183; v2</text>
+    <text x="222" y="206" fill="#8ea0b8">~2M responses &#183; 8 models &#183; 5 families &#183; AWQ/GPTQ</text>
+    <text x="84" y="228" fill="#cdd8e6">weights: safety-neutral (we agree) &#8212; but sampling DFR</text>
+    <text x="84" y="246" fill="#cdd8e6">reaches 41.9% at T=1.0. Their dice &#8212; our 0-4.2%.</text>
+  </g>
+  <rect x="560" y="192" width="166" height="26" rx="13" fill="none" stroke="#6d5cff"/>
+  <text x="643" y="210" font-size="12" font-weight="700" fill="#9d8bff" text-anchor="middle">DID NOT REPEAT HERE</text>
+  <line x1="84" y1="264" x2="726" y2="264" stroke="#243044"/>
+  <g font-size="14">
+    <text x="84" y="292" fill="#eef3fb" font-weight="700">arXiv 2606.09864</text>
+    <text x="222" y="292" fill="#8ea0b8">11 models, 3.8B-72B &#183; 1,894 prompts</text>
+    <text x="84" y="314" fill="#cdd8e6">KV int8 &#8220;can silently destroy&#8221; alignment &#8212; -15.2%</text>
+    <text x="84" y="332" fill="#cdd8e6">refusals, Mistral-7B; no universal safe bit-width.</text>
+  </g>
+  <rect x="560" y="278" width="166" height="26" rx="13" fill="none" stroke="#b7791f"/>
+  <text x="643" y="296" font-size="12" font-weight="700" fill="#e7b75f" text-anchor="middle">NOT ON THIS MoE</text>
+  <text x="84" y="366" font-size="13" fill="#5f7086" font-style="italic">our daily box ships both suspect settings at once &#8212; quantized weights AND int8 KV.</text>
+  <text x="84" y="384" font-size="13" fill="#5f7086" font-style="italic">v1 of paper 1 read 53.0% DFR at &#8776;322k responses &#8212; v2 moved the numbers; cite versions.</text>
+
+  <!-- stack + versioning -->
+  <rect x="790" y="140" width="750" height="250" rx="14" fill="#161f2e" stroke="#243044"/>
+  <text x="814" y="172" font-size="15" font-weight="700" fill="#9d8bff" letter-spacing="2">THE STACK &#8212; 4 ARMS &#183; ONE RTX 3090 &#183; ONE ENGINE</text>
+  <g font-size="14.5" fill="#cdd8e6">
+    <text x="814" y="204">engine 0.1.55 (Terminal 0.2.9) &#183; 24G VRAM + 125 GiB RAM expert arena</text>
+    <text x="814" y="230">A censored UD-Q4_K_XL ~4.6 bpw, KV int8  &#183;  C community IQ3_S ~3 bpw, KV int8</text>
+    <text x="814" y="256">A-KV same checkpoint minus --kv int8 (fp16 KV)  &#183;  B uncensored Q4_K_M control</text>
+    <text x="814" y="282">sampling T=0.7 prod / T=1.0 stress, top_p 0.8, thinking off; K=5 paired seeds 1000-1004</text>
+    <text x="814" y="308">DFR = decision-flip rate across the 5 paired draws; refusal regex EN+RU; no harmful text kept</text>
+  </g>
+  <g font-size="13" fill="#5f7086">
+    <text x="814" y="340">versioning: v1 2026-10-26 knowledge is a tie &#183; v2 2026-10-29 uncensored is unshackled &#183; v3 this board</text>
+    <text x="814" y="360">scorer fix (explanation blocks AND&#8594;OR over markers) disclosed in test.md; B/D + refusal numbers unchanged</text>
+    <text x="814" y="380">harness bakeoff3.py &#183; grid report3.py &#183; ~1,000 completions per arm</text>
+  </g>
+
+  <!-- headline panel -->
+  <rect x="60" y="418" width="1480" height="282" rx="14" fill="#161f2e" stroke="#243044"/>
+  <text x="84" y="450" font-size="15" font-weight="700" fill="#e7b75f" letter-spacing="2">THE HEADLINE &#8212; REFUSAL IS A ROCK, USEFULNESS IS A DICE (arm A, T=0.7 &#8594; T=1.0)</text>
+  <g font-size="14" fill="#8ea0b8">
+    <text x="90" y="502">DFR refusals, T=0.7</text>
+    <text x="90" y="544">DFR refusals, T=1.0</text>
+    <text x="90" y="586">DFR utility, T=0.7</text>
+    <text x="90" y="628">DFR utility, T=1.0</text>
+  </g>
+  <rect x="250" y="486" width="40" height="22" rx="5" fill="url(#teal)"/>
+  <text x="300" y="503" font-size="15" font-weight="700" fill="#2ee6d6">3.3%</text>
+  <rect x="250" y="528" width="50" height="22" rx="5" fill="url(#teal)"/>
+  <text x="310" y="545" font-size="15" font-weight="700" fill="#2ee6d6">4.2%</text>
+  <rect x="250" y="570" width="170" height="22" rx="5" fill="url(#amber)"/>
+  <text x="430" y="587" font-size="15" font-weight="700" fill="#e7b75f">14.2%</text>
+  <rect x="250" y="612" width="130" height="22" rx="5" fill="url(#amber)"/>
+  <text x="390" y="629" font-size="15" font-weight="700" fill="#e7b75f">10.8%</text>
+  <text x="90" y="672" font-size="13" fill="#5f7086" font-style="italic">bars &#8733; % exactly; paper promised up to 41.9% refusal chaos &#8212; our rock barely moved</text>
+  <text x="660" y="672" font-size="13" fill="#5f7086" font-style="italic">harmless work flipped up to 1 in 4 pairs</text>
+
+  <text x="960" y="490" font-size="14" fill="#8ea0b8">classic harmful asks &#183; each dot = one refused response (arm A)</text>
+  <g fill="#9d8bff">
+    <circle cx="960" cy="520" r="7"/><circle cx="996" cy="520" r="7"/><circle cx="1032" cy="520" r="7"/><circle cx="1068" cy="520" r="7"/><circle cx="1104" cy="520" r="7"/><circle cx="1140" cy="520" r="7"/><circle cx="1176" cy="520" r="7"/><circle cx="1212" cy="520" r="7"/>
+    <circle cx="960" cy="556" r="7"/><circle cx="996" cy="556" r="7"/><circle cx="1032" cy="556" r="7"/><circle cx="1068" cy="556" r="7"/><circle cx="1104" cy="556" r="7"/><circle cx="1140" cy="556" r="7"/><circle cx="1176" cy="556" r="7"/><circle cx="1212" cy="556" r="7"/>
+    <circle cx="960" cy="592" r="7"/><circle cx="996" cy="592" r="7"/><circle cx="1032" cy="592" r="7"/><circle cx="1068" cy="592" r="7"/><circle cx="1104" cy="592" r="7"/><circle cx="1140" cy="592" r="7"/><circle cx="1176" cy="592" r="7"/><circle cx="1212" cy="592" r="7"/>
+    <circle cx="960" cy="628" r="7"/><circle cx="996" cy="628" r="7"/><circle cx="1032" cy="628" r="7"/><circle cx="1068" cy="628" r="7"/><circle cx="1104" cy="628" r="7"/><circle cx="1140" cy="628" r="7"/><circle cx="1176" cy="628" r="7"/><circle cx="1212" cy="628" r="7"/>
+    <circle cx="960" cy="664" r="7"/><circle cx="996" cy="664" r="7"/><circle cx="1032" cy="664" r="7"/><circle cx="1068" cy="664" r="7"/><circle cx="1104" cy="664" r="7"/><circle cx="1140" cy="664" r="7"/><circle cx="1176" cy="664" r="7"/><circle cx="1212" cy="664" r="7"/>
+  </g>
+  <g font-size="14" fill="#8ea0b8">
+    <text x="1260" y="520">T=0.7:  40/40 refused, 0 flips</text>
+    <text x="1260" y="556">T=1.0:  40/40 refused, 0 flips</text>
+    <text x="1260" y="592">KV fp16 clone:  40/40 refused</text>
+    <text x="1260" y="628" fill="#e7b75f">uncensored control: 0/40 refused</text>
+    <text x="1260" y="652" fill="#8ea0b8">&#8212; 40/40 blindly complied</text>
+  </g>
+
+  <!-- axis cards -->
+  <rect x="60" y="720" width="355" height="196" rx="14" fill="#161f2e" stroke="#243044"/>
+  <text x="80" y="750" font-size="13" font-weight="700" fill="#2ee6d6" letter-spacing="2">AXIS 1 &#183; WEIGHT BITS</text>
+  <g font-size="13" fill="#8ea0b8">
+    <text x="80" y="776">censored 4.6 bpw</text><text x="80" y="806">IQ3_S 3 bpw</text><text x="80" y="836">uncensored control</text>
+  </g>
+  <rect x="245" y="764" width="90" height="14" rx="4" fill="url(#amber)"/>
+  <rect x="245" y="794" width="66" height="14" rx="4" fill="url(#teal)"/>
+  <rect x="245" y="824" width="156" height="14" rx="4" fill="url(#violet)"/>
+  <text x="341" y="776" font-size="13" font-weight="700" fill="#e7b75f">45%</text>
+  <text x="317" y="806" font-size="13" font-weight="700" fill="#2ee6d6">33%</text>
+  <text x="253" y="836" font-size="13" font-weight="700" fill="#0b1018">78%</text>
+  <g font-size="12" fill="#5f7086">
+    <text x="80" y="866">ASR 45&#8594;33: direction only (McNemar 11:4, p=.12).</text>
+    <text x="80" y="882">U1 26&#8594;34/60: p=.039 nominal (~10 tests run).</text>
+    <text x="80" y="898">Wall 40/40 &#8805;91.2% Wilson; 4&#215;n retest queued.</text>
+  </g>
+
+  <rect x="435" y="720" width="355" height="196" rx="14" fill="#161f2e" stroke="#243044"/>
+  <text x="455" y="750" font-size="13" font-weight="700" fill="#e7b75f" letter-spacing="2">AXIS 2 &#183; KV CACHE, SAME SEEDS</text>
+  <text x="455" y="792" font-size="26" font-weight="700" fill="#2ee6d6">40/40 &#8594; 40/40</text>
+  <text x="455" y="818" font-size="14" fill="#cdd8e6">harmful-refusals, DFR 0.0% on both sides</text>
+  <text x="455" y="850" font-size="18" font-weight="700" fill="#e7b75f">ASR 45% &#8594; 52%</text>
+  <text x="455" y="874" font-size="12.5" fill="#5f7086">McNemar 6:2, p=0.29 &#8212; indistinguishable;</text>
+  <text x="455" y="890" font-size="12.5" fill="#5f7086">their verb is &#8220;can&#8221;; prod: vLLM FP8/NVIDIA.</text>
+
+  <rect x="810" y="720" width="355" height="196" rx="14" fill="#161f2e" stroke="#243044"/>
+  <text x="830" y="750" font-size="13" font-weight="700" fill="#9d8bff" letter-spacing="2">AXIS 3 &#183; 256K ON ONE HOME PC</text>
+  <text x="830" y="792" font-size="24" font-weight="700" fill="#2ee6d6">5/5 needles found</text>
+  <text x="830" y="818" font-size="14" fill="#cdd8e6">16.7K &#8594; 257.5K tokens, exact usage count</text>
+  <text x="830" y="846" font-size="14" fill="#cbd5e1">RSS 84 &#8594; 90 GiB of 125 &#183; prefill up to 3.4K tok/s</text>
+  <text x="830" y="874" font-size="12.5" fill="#5f7086">sequential mode; the 12-way parallel profile caps</text>
+  <text x="830" y="890" font-size="12.5" fill="#5f7086">each slot at ~21.8K &#8212; advertised 256K is not 256K there.</text>
+
+  <rect x="1185" y="720" width="355" height="196" rx="14" fill="#161f2e" stroke="#243044"/>
+  <text x="1205" y="750" font-size="13" font-weight="700" fill="#e7b75f" letter-spacing="2">VERSIONING &#183; ENGINE IS IN THE STACK</text>
+  <text x="1205" y="780" font-size="14" fill="#cdd8e6">same GGUF + seeds, engine 0.1.52&#8594;0.1.55:</text>
+  <text x="1205" y="808" font-size="20" font-weight="700" fill="#2ee6d6">ASR 51.7% &#8594; 45.0%</text>
+  <text x="1205" y="832" font-size="12.5" fill="#cdd8e6">McNemar 8:4, p=0.39 &#8212; n=60 can&#8217;t tell</text>
+  <text x="1205" y="850" font-size="12.5" fill="#cdd8e6">drift from dice; &#8220;improved&#8221;: retracted.</text>
+  <text x="1205" y="872" font-size="12.5" fill="#5f7086">DeltaNet +2-6% Ampere claim: measured +0.4%,</text>
+  <text x="1205" y="900" font-size="12.5" font-style="italic" fill="#8ea0b8">pin the engine build, or you benchmark the changelog.</text>
+
+  <!-- footer -->
+  <text x="60" y="938" font-size="13" fill="#5f7086">Limits, kept visible: one host, one engine build, K=5 correlated seeds, 8-12 tasks/block; ask-type refusal rates</text>
+  <text x="60" y="956" font-size="13" fill="#5f7086">0% on explain-asks, 8-13% defensive-code, 100% classic &#8212; gray-zone middle-block probe queued, not run. T&gt;1.0, spec-off, cross-version parallel not run.</text>
+  <text x="60" y="978" font-size="12.5" fill="#8ea0b8">Stack: Strata Terminal 0.2.9 &#183; engine build 0.1.55 (0.1.55-linux-x86_64-cuda-cuda13, sm_86 Ampere) &#183; delta run: engine 0.1.52, same CUDA 13, same host</text>
+  <text x="60" y="996" font-size="12.5" fill="#8ea0b8">Checkpoints (GGUF file names): Qwen3.8-Flash-Next-UD-Q4_K_XL (4 shards, arm A + KV clone) &#183; Qwen3.8-Flash-Next-GSQ-RCO-IQ3_S (2 shards) &#183; Qwen3.8-Flash-Next-Uncensored-Q4_K_M (3)</text>
+  <text x="60" y="1016" font-size="13" fill="#cbd5e1">sources: arXiv 2606.29581v2 &#183; arXiv 2606.09864 &#183; raw JSON + harness: github.com/sinoptiks/sinoptiks &#8212; benchmark/qwen38-censored-ab + qwen38-injection-check</text>
+</svg>
