@@ -1,8 +1,8 @@
-=== A/B 0.1.63 vs 0.1.66, старт 2026-11-23T10:20:11Z ===
-arm A (до апгрейда):
-движок=0.1.63-linux-x86_64-cuda-cuda13 frontend=4dba12f00e4e workers=15
+=== A/B 0.1.63 vs 0.1.66, start 2026-11-23T10:20:11Z ===
+arm A (before upgrade):
+engine=0.1.63-linux-x86_64-cuda-cuda13 frontend=4dba12f00e4e workers=15
 93.4 2558
-=== апгрейд терминала+движка до 0.2.20/0.1.66 ===
+=== upgrade terminal+engine to 0.2.20/0.1.66 ===
 Strata update (https://github.com/Niko1221/Strata/releases/latest/download)
   Reading the signed update feed
   downloading engine 0.1.66 linux-x86_64-cuda-cuda13: 0%
@@ -27,4 +27,4 @@ Strata update (https://github.com/Niko1221/Strata/releases/latest/download)
 Feed sequence 132, signed by 5d1bc23abbeffd0d
 Engine  0.1.63   NOT changed: The new engine 0.1.66 did not start correctly on this computer, so it was not installed. Your current engine is unchanged. The engine started but stopped before it answered a test question. Run `strata update --force` to try again; if it fails again, report it with the log: ~/.local/share/strata/components/.updates/logs/test-start-0.1.66.log
 Control 0.1.63 -> 0.1.66   updated. The next `strata` command already runs it; the app switches on its next start
-[!] strata update rc=6 — поднимаю как было
+[!] strata update rc=6 — bringing the service back as it was

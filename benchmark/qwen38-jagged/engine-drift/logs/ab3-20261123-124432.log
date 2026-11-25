@@ -4,8 +4,8 @@ usage: strata [-h] [--version]
 strata: error: unrecognized arguments: 0.1.66
 Engine 0.1.66 is already in use. Nothing was changed.
 cwd = ~/.local/share/strata/components/control/0.1.66
-health=200 за 25с
-  жив: 0.1.66 frontend=95fcf937b9d3
+health=200 in 25s
+  alive: 0.1.66 frontend=95fcf937b9d3
 B1,90.1 2523
 usage: strata [-h] [--version]
               {serve,profile,repair-access,doctor,components,update,models,drafting,split-engine,engine,install,runtime,ops,bench,timeskip,tune,presets,launch,connect,status,monitor,logs,connection,config,code,complete}
@@ -15,8 +15,8 @@ Engine 0.1.63 is now in use (was 0.1.66). Models you start from now on run on it
 Saved tuning presets are marked for the short re-check; none were deleted.
 `strata update` makes the newest engine the one in use again.
 cwd = ~/.local/share/strata/terminal/0.1.63
-health=200 за 25с
-  жив: 0.1.63 frontend=4dba12f00e4e
+health=200 in 25s
+  alive: 0.1.63 frontend=4dba12f00e4e
 A2,95.3 2556
 usage: strata [-h] [--version]
               {serve,profile,repair-access,doctor,components,update,models,drafting,split-engine,engine,install,runtime,ops,bench,timeskip,tune,presets,launch,connect,status,monitor,logs,connection,config,code,complete}
@@ -26,8 +26,8 @@ Engine 0.1.66 is now in use (was 0.1.63). Models you start from now on run on it
 Saved tuning presets are marked for the short re-check; none were deleted.
 This is the newest engine, so it follows updates again.
 cwd = ~/.local/share/strata/components/control/0.1.66
-health=200 за 25с
-  жив: 0.1.66 frontend=95fcf937b9d3
+health=200 in 25s
+  alive: 0.1.66 frontend=95fcf937b9d3
 B2,87.6 2503
 usage: strata [-h] [--version]
               {serve,profile,repair-access,doctor,components,update,models,drafting,split-engine,engine,install,runtime,ops,bench,timeskip,tune,presets,launch,connect,status,monitor,logs,connection,config,code,complete}
@@ -37,8 +37,8 @@ Engine 0.1.63 is now in use (was 0.1.66). Models you start from now on run on it
 Saved tuning presets are marked for the short re-check; none were deleted.
 `strata update` makes the newest engine the one in use again.
 cwd = ~/.local/share/strata/terminal/0.1.63
-health=200 за 25с
-  жив: 0.1.63 frontend=4dba12f00e4e
+health=200 in 25s
+  alive: 0.1.63 frontend=4dba12f00e4e
 batt A: {"file": "20261123T104929Z-ladder-ab3-A.json", "counts": {"TRUNCATED": 17, "no-field:old_string": 8, "no-field:new_string": 10, "other": 5}}
 usage: strata [-h] [--version]
               {serve,profile,repair-access,doctor,components,update,models,drafting,split-engine,engine,install,runtime,ops,bench,timeskip,tune,presets,launch,connect,status,monitor,logs,connection,config,code,complete}
@@ -48,12 +48,12 @@ Engine 0.1.66 is now in use (was 0.1.63). Models you start from now on run on it
 Saved tuning presets are marked for the short re-check; none were deleted.
 This is the newest engine, so it follows updates again.
 cwd = ~/.local/share/strata/components/control/0.1.66
-health=200 за 25с
-  жив: 0.1.66 frontend=95fcf937b9d3
+health=200 in 25s
+  alive: 0.1.66 frontend=95fcf937b9d3
 batt B: {"file": "20261123T105120Z-ladder-ab3-B.json", "counts": {"TRUNCATED": 17, "no-call": 3, "other": 9, "no-field:old_string": 6, "no-field:new_string": 5}}
-=== финал (0.1.66 + HC_Q8=0) ===
+=== final (0.1.66 + HC_Q8=0) ===
 A1,94.8 2544
 B1,90.1 2523
 A2,95.3 2556
 B2,87.6 2503
-откат: sudo rm -f /etc/systemd/system/strata.service.d/df2-hc.conf && sudo systemctl daemon-reload && sudo systemctl restart strata
+rollback: sudo rm -f /etc/systemd/system/strata.service.d/df2-hc.conf && sudo systemctl daemon-reload && sudo systemctl restart strata
