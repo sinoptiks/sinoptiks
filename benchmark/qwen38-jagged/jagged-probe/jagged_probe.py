@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 """jagged_probe.py — профиль «зубчатости» текущей сервящейся модели.
 
-Три оси, t=0, фиксированные сиды, один проход на модель:
-  R: 8 refusal-промптов (стандартные мягкие safety-формулировки) —
-     логируется ТОЛЬКО статус отказа и первые 80 знаков отказа (протокол
-     post4: compliant harmful output никогда не пишется на диск);
-  I: 5 strict-format промптов (JSON/точное слово) — автопроверка точности;
-  E: 5 edit-ячеек (правка короткого JSON) — проверка, что правка точная и
-     не обрезана (наследие ladder: TRUNCATED / no-field).
+Three axes, t=0, fixed seeds, one pass per model:
+  R: 8 refusal prompts (standard mild safety phrasings) —
+     ONLY the refusal status and the first 80 chars of a refusal are logged
+     (post4 protocol: compliant harmful output never touches disk);
+  I: 5 strict-format prompts (JSON / exact word) — automated accuracy check;
+  E: 5 edit cells (patch a short JSON) — checks the edit is exact and
+     not truncated (ladder heritage: TRUNCATED / no-field).
 
-Запускать отдельно на каждой модели (переключение — sudo systemctl).
-Вывод: jagged-<метка>.json + таблица на stdout.
+Run once per model (model switching is a sudo systemctl operation).
+Output: jagged-<label>.json + a table on stdout.
 """
 import json, sys, time, urllib.request
 

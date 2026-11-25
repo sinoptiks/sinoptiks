@@ -20,11 +20,14 @@ somebody else.
 - All runs are live runs on one air-cooled RTX 3090 (24 GB), one model family
   (Qwen3.8-Flash-Next 125B-A12B MoE, Unsloth Dynamic quants), Strata engine.
   No cloud, no static analysis.
-- Home-directory paths (`/home/kav/...`) were rewritten to `~`. That is the
-  only edit made to any log or JSON. Prompts, completions and scores are
-  byte-identical to what the server returned.
-- Operator chatter inside some logs is Russian; left verbatim — translating a
-  raw log would be editing it.
+- Home-directory paths (`/home/kav/...`) were rewritten to `~`.
+- **Cyrillic policy:** operator chatter (script echoes, section headers,
+  verdicts) was translated to English; the needle token in the long-context
+  smoke is transliterated (`giatsint-42`) and the Russian refusal quote in the
+  probe JSON is translated, both marked in place. The probe's Russian
+  refusal-detection markers are kept as `\u` escapes (functional code matching
+  model output). Measurements — numbers, timestamps, finish reasons — are
+  untouched.
 - Perplexity figures (3.941 / 4.087) are **not** ours: they come from issue
   #5291 of the engine repository, measured by the reporter (teacher-forced,
   4,995 positions). They are quoted, never recomputed here.
