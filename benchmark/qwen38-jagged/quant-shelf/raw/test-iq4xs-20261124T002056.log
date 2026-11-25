@@ -1,0 +1,21 @@
+== 0. HEALTH ==
+{"status": "ok", "max_context": 262144, "model": "qwen3.8-flash-next-ud-iq4_xs", "images": false, "api_key": false, "image_generation": false, "loaded": true, "service": "strata"}
+{"object": "list", "data": [{"id": "qwen3.8-flash-next-ud-iq4_xs", "object": "model", "status": {"value": "loaded"}, "max_model_len": 262144, "context_length": 262144, "max_context_length": 262144, "meta": {"n_ctx": 262144}, "architecture": {"input_modalities": ["text"], "output_modalities": ["text"
+== 1. CHAT SANITY ==
+content: '391'
+usage: {'prompt_tokens': 69, 'completion_tokens': 58, 'total_tokens': 127, 'prompt_tokens_details': {'cached_tokens': 0}}
+== 2. TOOL-CALL PROBES (регресс #5756) ==
+{"file": "20261123T222105Z-probeB-ud-iq4-xs-rdefault.json", "build_info": "Strata 0.1.63", "routes": {"api-call": 8}, "summary": {"bool-ok": 8}}
+{"file": "20261123T222111Z-probeB-ud-iq4-xs-rnone.json", "build_info": "Strata 0.1.63", "routes": {"api-call": 8}, "summary": {"bool-ok": 8}}
+{"file": "20261123T222115Z-probeB-ud-iq4-xs-rnone-stream.json", "build_info": "Strata 0.1.63", "routes": {"api-call": 8}, "summary": {"bool-ok": 8}}
+{"file": "20261123T222146Z-probeA-ud-iq4-xs-rdefault.json", "build_info": "Strata 0.1.63", "routes": {"no-call": 10}, "summary": {"no-call": 10}}
+{"file": "20261123T222157Z-probeA-ud-iq4-xs-rnone.json", "build_info": "Strata 0.1.63", "routes": {"api-call": 10}, "summary": {"clean": 10}}
+{"file": "20261123T222204Z-probeA-ud-iq4-xs-rdefault-ctl.json", "build_info": "Strata 0.1.63", "routes": {"control": 4}, "summary": {"kept-verbatim": 4}}
+== 3. LADDER 8x5 (качество; сравнимо с ud-q4-kxl и gsq-iq3s) ==
+{"file": "20261123T222231Z-ladder-ud-iq4-xs.json", "counts": {"TRUNCATED": 37, "no-field:old_string": 3}}
+== 4. SPEED (прогрев 3+3, decode n=6, prefill n=3) ==
+107.1 3032
+== 5. LONG CONTEXT SMOKE (игла в ~160K) ==
+prompt_tokens=193285 elapsed=60s pp=3228 t/s
+answer: 'гиацинт-42'
+DONE-TESTS

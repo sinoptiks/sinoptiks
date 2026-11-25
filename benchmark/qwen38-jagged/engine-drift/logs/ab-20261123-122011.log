@@ -1,0 +1,30 @@
+=== A/B 0.1.63 vs 0.1.66, старт 2026-11-23T10:20:11Z ===
+arm A (до апгрейда):
+движок=0.1.63-linux-x86_64-cuda-cuda13 frontend=4dba12f00e4e workers=15
+93.4 2558
+=== апгрейд терминала+движка до 0.2.20/0.1.66 ===
+Strata update (https://github.com/Niko1221/Strata/releases/latest/download)
+  Reading the signed update feed
+  downloading engine 0.1.66 linux-x86_64-cuda-cuda13: 0%
+  downloading engine 0.1.66 linux-x86_64-cuda-cuda13: 10%
+  downloading engine 0.1.66 linux-x86_64-cuda-cuda13: 20%
+  downloading engine 0.1.66 linux-x86_64-cuda-cuda13: 30%
+  downloading engine 0.1.66 linux-x86_64-cuda-cuda13: 40%
+  downloading engine 0.1.66 linux-x86_64-cuda-cuda13: 50%
+  downloading engine 0.1.66 linux-x86_64-cuda-cuda13: 60%
+  downloading engine 0.1.66 linux-x86_64-cuda-cuda13: 70%
+  downloading engine 0.1.66 linux-x86_64-cuda-cuda13: 80%
+  downloading engine 0.1.66 linux-x86_64-cuda-cuda13: 90%
+  downloading engine 0.1.66 linux-x86_64-cuda-cuda13: 100%
+  Unpacking 0.1.66 linux-x86_64-cuda-cuda13
+  Checking the package signature and every file
+  Test-starting engine 0.1.66 linux-x86_64-cuda-cuda13 before switching to it
+  Engine 0.1.66 is loading the model (1 s)
+  Engine 0.1.66 has loaded the model; waiting for it to answer one token (21 s)
+  downloading Control 0.1.66: 100%
+  Unpacking Control 0.1.66
+  Test-starting Control 0.1.66
+Feed sequence 132, signed by 5d1bc23abbeffd0d
+Engine  0.1.63   NOT changed: The new engine 0.1.66 did not start correctly on this computer, so it was not installed. Your current engine is unchanged. The engine started but stopped before it answered a test question. Run `strata update --force` to try again; if it fails again, report it with the log: ~/.local/share/strata/components/.updates/logs/test-start-0.1.66.log
+Control 0.1.63 -> 0.1.66   updated. The next `strata` command already runs it; the app switches on its next start
+[!] strata update rc=6 — поднимаю как было

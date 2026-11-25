@@ -1,0 +1,345 @@
+{
+ "utc": "2026-11-20T14:02:47.811450+00:00",
+ "kind": "ladder",
+ "pack": "qwen3.8-flash-next-ud-q4_k_xl",
+ "trials": 8,
+ "rounds_per_trial": 5,
+ "temp": 0.7,
+ "top_p": 0.8,
+ "reasoning": "none",
+ "seeds": [
+  1000,
+  1010,
+  1020,
+  1030,
+  1040,
+  1050,
+  1060,
+  1070
+ ],
+ "counts": {
+  "TRUNCATED": 22,
+  "no-field:new_string": 5,
+  "other": 2,
+  "no-call": 2,
+  "no-field:old_string": 9
+ },
+ "trials_detail": [
+  {
+   "trial": 0,
+   "rounds": [
+    {
+     "round": 0,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>logs</parameter>\n<parameter=limit>25</parameter>",
+     "new": "<parameter=query>logs</parameter>"
+    },
+    {
+     "round": 1,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>logs</parameter>\n<parameter=limit>30</parameter>",
+     "new": "<parameter=query>logs</parameter>"
+    },
+    {
+     "round": 2,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>logs</parameter>\n<parameter=limit>35</parameter>",
+     "new": "<parameter=query>warnings</parameter>"
+    },
+    {
+     "round": 3,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>warnings</parameter>\n<parameter=limit>35</parameter>",
+     "new": "<parameter=query>warnings</parameter>\n<parameter=limit>\n40"
+    },
+    {
+     "round": 4,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>warnings</parameter>\n<parameter=limit>40</parameter>",
+     "new": "<parameter=query>errors</parameter>\n<parameter=limit>\n40"
+    }
+   ]
+  },
+  {
+   "trial": 1,
+   "rounds": [
+    {
+     "round": 0,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>logs</parameter>\n<parameter=limit>25</parameter>",
+     "new": "<parameter=query>logs</parameter>"
+    },
+    {
+     "round": 1,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>logs</parameter>\n<parameter=limit>30</parameter>",
+     "new": "<parameter=query>logs</parameter>"
+    },
+    {
+     "round": 2,
+     "class": "no-field:new_string",
+     "route": "api-call",
+     "old": "<parameter=query>logs</parameter>\n<parameter=limit>35</parameter>",
+     "new": ""
+    },
+    {
+     "round": 3,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>warnings</parameter>\n<parameter=limit>35</parameter>",
+     "new": "<parameter=query>warnings</parameter>\n<parameter=limit>40</parameter>"
+    },
+    {
+     "round": 4,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>warnings</parameter>\n<parameter=limit>40</parameter>",
+     "new": "<parameter=query>errors</parameter>\n<parameter=limit>40</parameter>"
+    }
+   ]
+  },
+  {
+   "trial": 2,
+   "rounds": [
+    {
+     "round": 0,
+     "class": "no-field:new_string",
+     "route": "api-call",
+     "old": "<parameter=query>logs</parameter>\n<parameter=limit>25</parameter>\n</invoke>",
+     "new": ""
+    },
+    {
+     "round": 1,
+     "class": "no-field:new_string",
+     "route": "api-call",
+     "old": "<parameter name=\"limit\">30",
+     "new": ""
+    },
+    {
+     "round": 2,
+     "class": "no-field:new_string",
+     "route": "api-call",
+     "old": "<parameter=query>logs</parameter>\n<parameter name=\"limit\">35",
+     "new": ""
+    },
+    {
+     "round": 3,
+     "class": "other",
+     "route": "api-call",
+     "old": "<parameter name=\"limit\">35",
+     "new": "<parameter name=\"limit\">40"
+    },
+    {
+     "round": 4,
+     "class": "other",
+     "route": "api-call",
+     "old": "<parameter name=\"query\">warnings",
+     "new": "<parameter name=\"query\">errors"
+    }
+   ]
+  },
+  {
+   "trial": 3,
+   "rounds": [
+    {
+     "round": 0,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>logs</parameter>\n<parameter=limit>25</parameter>",
+     "new": "<parameter=query>logs</parameter>"
+    },
+    {
+     "round": 1,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>logs</parameter>\n<parameter=limit>30</parameter>\n</invoke>\n",
+     "new": "<parameter=query>logs</parameter>"
+    },
+    {
+     "round": 2,
+     "class": "no-call",
+     "content_head": ""
+    },
+    {
+     "round": 3,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>logs</parameter>\n<parameter=limit>35</parameter>\n",
+     "new": "<parameter=query>warnings</parameter>\n<parameter=limit>35</parameter>\n"
+    },
+    {
+     "round": 4,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>warnings</parameter>\n<parameter=limit>35</parameter>\n",
+     "new": "<parameter=query>errors</parameter>\n<parameter=limit>35</parameter>\n"
+    }
+   ]
+  },
+  {
+   "trial": 4,
+   "rounds": [
+    {
+     "round": 0,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=limit>25</parameter>",
+     "new": "<parameter=limit>30</parameter>"
+    },
+    {
+     "round": 1,
+     "class": "no-field:old_string",
+     "route": "api-call",
+     "old": "",
+     "new": "<parameter=limit>35</parameter>"
+    },
+    {
+     "round": 2,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>logs</parameter>",
+     "new": "<parameter=query>warnings</parameter>"
+    },
+    {
+     "round": 3,
+     "class": "no-field:new_string",
+     "route": "api-call",
+     "old": "<parameter=limit>35</parameter>",
+     "new": ""
+    },
+    {
+     "round": 4,
+     "class": "no-call",
+     "content_head": "I realize I've been making incomplete `edit_file` calls \u2014 some were missing required parameters like `path` and/or `new_string`, which means the file state may "
+    }
+   ]
+  },
+  {
+   "trial": 5,
+   "rounds": [
+    {
+     "round": 0,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=limit>25</parameter>",
+     "new": "<parameter=limit>30</parameter>"
+    },
+    {
+     "round": 1,
+     "class": "no-field:old_string",
+     "route": "api-call",
+     "old": "",
+     "new": "<parameter=limit>35</parameter>"
+    },
+    {
+     "round": 2,
+     "class": "no-field:old_string",
+     "route": "api-call",
+     "old": "",
+     "new": "<parameter=query>warnings</parameter>\n</invoke>"
+    },
+    {
+     "round": 3,
+     "class": "no-field:old_string",
+     "route": "api-call",
+     "old": "",
+     "new": "<parameter=limit>40</parameter>\n</invoke>"
+    },
+    {
+     "round": 4,
+     "class": "no-field:old_string",
+     "route": "api-call",
+     "old": "",
+     "new": "<parameter=query>errors</parameter>\n</invoke>"
+    }
+   ]
+  },
+  {
+   "trial": 6,
+   "rounds": [
+    {
+     "round": 0,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>logs</parameter>\n<parameter=limit>25</parameter>",
+     "new": "<parameter=query>logs</parameter>"
+    },
+    {
+     "round": 1,
+     "class": "no-field:old_string",
+     "route": "api-call",
+     "old": "",
+     "new": "<parameter=query>logs</parameter>\n<parameter=limit>\n35"
+    },
+    {
+     "round": 2,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>logs</parameter>\n<parameter=limit>\n35",
+     "new": "<parameter=query>warnings</parameter>"
+    },
+    {
+     "round": 3,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>warnings</parameter>",
+     "new": "<parameter=query>warnings</parameter>\n<parameter=limit>\n40"
+    },
+    {
+     "round": 4,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>warnings</parameter>\n<parameter=limit>\n40",
+     "new": "<parameter=query>errors</parameter>\n<parameter=limit>\n40"
+    }
+   ]
+  },
+  {
+   "trial": 7,
+   "rounds": [
+    {
+     "round": 0,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=limit>25</parameter>",
+     "new": "<parameter=limit>30</parameter>"
+    },
+    {
+     "round": 1,
+     "class": "no-field:old_string",
+     "route": "api-call",
+     "old": "",
+     "new": "<parameter=limit>35</parameter>"
+    },
+    {
+     "round": 2,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>logs</parameter>",
+     "new": "<parameter=query>warnings</parameter>"
+    },
+    {
+     "round": 3,
+     "class": "no-field:old_string",
+     "route": "api-call",
+     "old": "",
+     "new": "<parameter=limit>40</parameter>"
+    },
+    {
+     "round": 4,
+     "class": "no-field:old_string",
+     "route": "api-call",
+     "old": "",
+     "new": "<parameter=query>errors</parameter>"
+    }
+   ]
+  }
+ ]
+}

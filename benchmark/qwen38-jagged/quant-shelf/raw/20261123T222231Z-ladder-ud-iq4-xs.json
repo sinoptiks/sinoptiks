@@ -1,0 +1,346 @@
+{
+ "utc": "2026-11-23T22:22:31.543351+00:00",
+ "kind": "ladder",
+ "pack": "ud-iq4-xs",
+ "trials": 8,
+ "rounds_per_trial": 5,
+ "temp": 0.7,
+ "top_p": 0.8,
+ "reasoning": "none",
+ "seeds": [
+  1000,
+  1010,
+  1020,
+  1030,
+  1040,
+  1050,
+  1060,
+  1070
+ ],
+ "counts": {
+  "TRUNCATED": 37,
+  "no-field:old_string": 3
+ },
+ "trials_detail": [
+  {
+   "trial": 0,
+   "rounds": [
+    {
+     "round": 0,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=limit>25</parameter>",
+     "new": "<parameter=limit>30</parameter>"
+    },
+    {
+     "round": 1,
+     "class": "no-field:old_string",
+     "route": "api-call",
+     "old": "",
+     "new": "<parameter=limit>35</parameter>"
+    },
+    {
+     "round": 2,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>logs</parameter>",
+     "new": "<parameter=query>warnings</parameter>"
+    },
+    {
+     "round": 3,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=limit>35</parameter>",
+     "new": "<parameter=limit>40</parameter>"
+    },
+    {
+     "round": 4,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>warnings</parameter>",
+     "new": "<parameter=query>errors</parameter>"
+    }
+   ]
+  },
+  {
+   "trial": 1,
+   "rounds": [
+    {
+     "round": 0,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=limit>25</parameter>",
+     "new": "<parameter=limit>30</parameter>"
+    },
+    {
+     "round": 1,
+     "class": "no-field:old_string",
+     "route": "api-call",
+     "old": "",
+     "new": "<parameter=limit>35</parameter>"
+    },
+    {
+     "round": 2,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>logs</parameter>",
+     "new": "<parameter=query>warnings</parameter>"
+    },
+    {
+     "round": 3,
+     "class": "no-field:old_string",
+     "route": "api-call",
+     "old": "",
+     "new": "<parameter=limit>40</parameter>"
+    },
+    {
+     "round": 4,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>warnings</parameter>",
+     "new": "<parameter=query>errors</parameter>"
+    }
+   ]
+  },
+  {
+   "trial": 2,
+   "rounds": [
+    {
+     "round": 0,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=limit>25</parameter>",
+     "new": "<parameter=limit>30</parameter>"
+    },
+    {
+     "round": 1,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=limit>30</parameter>",
+     "new": "<parameter=limit>35</parameter>"
+    },
+    {
+     "round": 2,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>logs</parameter>",
+     "new": "<parameter=query>warnings</parameter>"
+    },
+    {
+     "round": 3,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=limit>35</parameter>",
+     "new": "<parameter=limit>40</parameter>"
+    },
+    {
+     "round": 4,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>warnings</parameter>",
+     "new": "<parameter=query>errors</parameter>"
+    }
+   ]
+  },
+  {
+   "trial": 3,
+   "rounds": [
+    {
+     "round": 0,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=limit>25</parameter>",
+     "new": "<parameter=limit>30</parameter>"
+    },
+    {
+     "round": 1,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=limit>30</parameter>",
+     "new": "<parameter=limit>35</parameter>"
+    },
+    {
+     "round": 2,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>logs</parameter>",
+     "new": "<parameter=query>warnings</parameter>"
+    },
+    {
+     "round": 3,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=limit>35</parameter>",
+     "new": "<parameter=limit>40</parameter>"
+    },
+    {
+     "round": 4,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>warnings</parameter>",
+     "new": "<parameter=query>errors</parameter>"
+    }
+   ]
+  },
+  {
+   "trial": 4,
+   "rounds": [
+    {
+     "round": 0,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=limit>25</parameter>",
+     "new": "<parameter=limit>30</parameter>"
+    },
+    {
+     "round": 1,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=limit>30</parameter>",
+     "new": "<parameter=limit>35</parameter>"
+    },
+    {
+     "round": 2,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>logs</parameter>",
+     "new": "<parameter=query>warnings</parameter>"
+    },
+    {
+     "round": 3,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=limit>35</parameter>",
+     "new": "<parameter=limit>40</parameter>"
+    },
+    {
+     "round": 4,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>warnings</parameter>",
+     "new": "<parameter=query>errors</parameter>"
+    }
+   ]
+  },
+  {
+   "trial": 5,
+   "rounds": [
+    {
+     "round": 0,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=limit>25</parameter>",
+     "new": "<parameter=limit>30</parameter>"
+    },
+    {
+     "round": 1,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=limit>30</parameter>",
+     "new": "<parameter=limit>35</parameter>"
+    },
+    {
+     "round": 2,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>logs</parameter>",
+     "new": "<parameter=query>warnings</parameter>"
+    },
+    {
+     "round": 3,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=limit>35</parameter>",
+     "new": "<parameter=limit>40</parameter>"
+    },
+    {
+     "round": 4,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>warnings</parameter>",
+     "new": "<parameter=query>errors</parameter>"
+    }
+   ]
+  },
+  {
+   "trial": 6,
+   "rounds": [
+    {
+     "round": 0,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=limit>25</parameter>",
+     "new": "<parameter=limit>30</parameter>"
+    },
+    {
+     "round": 1,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=limit>30</parameter>",
+     "new": "<parameter=limit>35</parameter>"
+    },
+    {
+     "round": 2,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>logs</parameter>",
+     "new": "<parameter=query>warnings</parameter>"
+    },
+    {
+     "round": 3,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=limit>35</parameter>",
+     "new": "<parameter=limit>40</parameter>"
+    },
+    {
+     "round": 4,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>warnings</parameter>",
+     "new": "<parameter=query>errors</parameter>"
+    }
+   ]
+  },
+  {
+   "trial": 7,
+   "rounds": [
+    {
+     "round": 0,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=limit>25</parameter>",
+     "new": "<parameter=limit>30</parameter>"
+    },
+    {
+     "round": 1,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=limit>30</parameter>",
+     "new": "<parameter=limit>35</parameter>"
+    },
+    {
+     "round": 2,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>logs</parameter>",
+     "new": "<parameter=query>warnings</parameter>"
+    },
+    {
+     "round": 3,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=limit>35</parameter>",
+     "new": "<parameter=limit>40</parameter>"
+    },
+    {
+     "round": 4,
+     "class": "TRUNCATED",
+     "route": "api-call",
+     "old": "<parameter=query>warnings</parameter>",
+     "new": "<parameter=query>errors</parameter>"
+    }
+   ]
+  }
+ ]
+}

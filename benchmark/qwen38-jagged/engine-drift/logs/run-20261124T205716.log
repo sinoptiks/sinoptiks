@@ -1,0 +1,46 @@
+== 0. снапшот ==
+  installed       0.1.52 linux-x86_64-cuda  ~/.local/share/strata/components/engine/0.1.52-linux-x86_64-cuda-cuda13
+  installed       0.1.55 linux-x86_64-cuda  ~/.local/share/strata/components/engine/0.1.55-linux-x86_64-cuda-cuda13
+  installed       0.1.63 linux-x86_64-cuda  ~/.local/share/strata/components/engine/0.1.63-linux-x86_64-cuda-cuda13
+/dev/nvme2n1p2  475G  145G  329G  31% /home
+== 1. стоп сервиса и обновление компонентов (пин держит 0.1.63 активным) ==
+Strata update (https://github.com/Niko1221/Strata/releases/latest/download)
+  Reading the signed update feed
+  downloading engine 0.1.67 linux-x86_64-cuda-cuda13: 0%
+  downloading engine 0.1.67 linux-x86_64-cuda-cuda13: 10%
+  downloading engine 0.1.67 linux-x86_64-cuda-cuda13: 20%
+  downloading engine 0.1.67 linux-x86_64-cuda-cuda13: 30%
+  downloading engine 0.1.67 linux-x86_64-cuda-cuda13: 40%
+  downloading engine 0.1.67 linux-x86_64-cuda-cuda13: 50%
+  downloading engine 0.1.67 linux-x86_64-cuda-cuda13: 60%
+  downloading engine 0.1.67 linux-x86_64-cuda-cuda13: 70%
+  downloading engine 0.1.67 linux-x86_64-cuda-cuda13: 80%
+  downloading engine 0.1.67 linux-x86_64-cuda-cuda13: 90%
+  downloading engine 0.1.67 linux-x86_64-cuda-cuda13: 100%
+  Unpacking 0.1.67 linux-x86_64-cuda-cuda13
+  Checking the package signature and every file
+  Test-starting engine 0.1.67 linux-x86_64-cuda-cuda13 before switching to it
+  Engine 0.1.67 is loading the model (0 s)
+  Engine 0.1.67 is loading the model (30 s)
+  Engine 0.1.67 has loaded the model; waiting for it to answer one token (48 s)
+  Switching to engine 0.1.67 linux-x86_64-cuda-cuda13
+  Engine 0.1.67 is installed and will be used on the next start
+  downloading Control 0.1.68: 100%
+  Unpacking Control 0.1.68
+  Test-starting Control 0.1.68
+Feed sequence 134, signed by 5d1bc23abbeffd0d
+Engine  0.1.63 -> 0.1.67   updated (tested: started, answered one token, stopped)
+Control 0.1.66 -> 0.1.68   updated. The next `strata` command already runs it; the app switches on its next start
+Saved tuning presets: marked for the short re-check (nothing was deleted).
+The previous engine version is kept; `strata components rollback` returns to it.
+strata update rc=0 (5=подпись, 6=сеть/тест-старт, 7=модель сервится)
+== 2. переключение на 0.1.67 и старт ==
+Engine 0.1.67 is already in use. Nothing was changed.
+движок в процессе: 0.1.67, health ok
+== 3. смоук ==
+chat: '391'
+{"file": "20261124T190106Z-probeB-ud-iq4-xs-0167-rdefault.json", "build_info": "Strata 0.1.67", "routes": {"api-call": 4}, "summary": {"bool-ok": 4}}
+== 4. бенч (база: decode 107.1, порог 104) ==
+0.1.67: decode=122.4 prefill=3168
+ВЕРДИКТ: 0.1.67 ПРИНЯТ (decode 122.4 >= 104, смоуки чистые). Осталось решить: пин на 0.1.63 снять или переставить на 0.1.67.
+Лог: ~/ab-0167/run-20261124T205716.log

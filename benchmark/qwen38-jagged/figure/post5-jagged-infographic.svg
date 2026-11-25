@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" font-family="Cantarell, 'DejaVu Sans', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#101725"/><stop offset="1" stop-color="#0b1018"/>
+    </linearGradient>
+    <linearGradient id="teal" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0ea5b7"/><stop offset="1" stop-color="#2ee6d6"/>
+    </linearGradient>
+    <linearGradient id="violet" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6d5cff"/><stop offset="1" stop-color="#9d8bff"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1600" height="6" fill="url(#teal)"/>
+
+  <!-- header -->
+  <text x="60" y="66" font-size="34" font-weight="700" fill="#eef3fb">Jagged: I deleted the engine my last article ran on.</text>
+  <text x="60" y="104" font-size="22" fill="#8ea0b8">three teeth of one model — engine, quant, conscience · byte-identical weights throughout</text>
+  <text x="1540" y="66" font-size="16" fill="#5f7086" text-anchor="end">2026-11-25 · single RTX 3090 · personal lab</text>
+  <text x="1540" y="90" font-size="16" fill="#5f7086" text-anchor="end">all numbers: live runs on the served model, not static analysis</text>
+
+  <!-- card A: engine drift -->
+  <rect x="60" y="140" width="460" height="450" rx="14" fill="#161f2e" stroke="#243044"/>
+  <text x="84" y="176" font-size="17" font-weight="700" fill="#2ee6d6" letter-spacing="2">TOOTH 1 · ENGINE DRIFT</text>
+  <text x="84" y="200" font-size="14" fill="#8ea0b8">decode t/s, same weights file, same prompts</text>
+  <!-- ghost 0.1.55 -->
+  <rect x="100" y="250" width="70" height="290" rx="6" fill="none" stroke="#5f7086" stroke-dasharray="6 4"/>
+  <text x="135" y="395" text-anchor="middle" font-size="13" fill="#5f7086" transform="rotate(-90 135 395)">0.1.55 — deleted Nov 24</text>
+  <!-- bars -->
+  <rect x="200" y="319" width="70" height="221" rx="6" fill="#9d8bff"/>
+  <text x="235" y="309" text-anchor="middle" font-size="15" fill="#eef3fb" font-weight="700">107.1</text>
+  <text x="235" y="562" text-anchor="middle" font-size="14" fill="#cdd8e6">0.1.63</text>
+  <text x="235" y="580" text-anchor="middle" font-size="12" fill="#5f7086">pinned</text>
+  <rect x="295" y="342" width="70" height="198" rx="6" fill="#e7b75f"/>
+  <text x="330" y="332" text-anchor="middle" font-size="15" fill="#e7b75f" font-weight="700">−7%</text>
+  <text x="330" y="562" text-anchor="middle" font-size="14" fill="#cdd8e6">0.1.66</text>
+  <text x="330" y="580" text-anchor="middle" font-size="12" fill="#e7b75f">crash-loop</text>
+  <rect x="390" y="287" width="70" height="253" rx="6" fill="url(#teal)"/>
+  <text x="425" y="277" text-anchor="middle" font-size="15" fill="#2ee6d6" font-weight="700">122.4</text>
+  <text x="425" y="562" text-anchor="middle" font-size="14" fill="#cdd8e6">0.1.67</text>
+  <text x="425" y="580" text-anchor="middle" font-size="12" fill="#2ee6d6">+14%</text>
+  <line x1="90" y1="540" x2="480" y2="540" stroke="#243044"/>
+
+  <!-- card B: bytes != fidelity -->
+  <rect x="550" y="140" width="460" height="450" rx="14" fill="#161f2e" stroke="#243044"/>
+  <text x="574" y="176" font-size="17" font-weight="700" fill="#9d8bff" letter-spacing="2">TOOTH 2 · BYTES ≠ FIDELITY</text>
+  <text x="574" y="200" font-size="14" fill="#8ea0b8">file size vs perplexity — the swap that demoted the bigger one</text>
+  <!-- IQ4_XS -->
+  <circle cx="680" cy="300" r="16" fill="#2ee6d6"/>
+  <text x="680" y="270" text-anchor="middle" font-size="17" font-weight="700" fill="#eef3fb">IQ4_XS</text>
+  <text x="680" y="332" text-anchor="middle" font-size="14" fill="#cdd8e6">88 GB · ppl 3.941</text>
+  <text x="680" y="352" text-anchor="middle" font-size="13" fill="#2ee6d6">+13% decode · 2× context</text>
+  <text x="680" y="370" text-anchor="middle" font-size="13" fill="#5f7086">→ MAIN</text>
+  <!-- Q4_K_XL -->
+  <circle cx="900" cy="420" r="16" fill="#9d8bff"/>
+  <text x="900" y="390" text-anchor="middle" font-size="17" font-weight="700" fill="#eef3fb">Q4_K_XL</text>
+  <text x="900" y="452" text-anchor="middle" font-size="14" fill="#cdd8e6">111 GB · ppl 4.087</text>
+  <text x="900" y="472" text-anchor="middle" font-size="13" fill="#e7b75f">but edit discipline 22 vs 37</text>
+  <text x="900" y="490" text-anchor="middle" font-size="13" fill="#5f7086">→ auxiliary, kept for the tooth</text>
+  <path d="M 882 405 L 700 315" stroke="#5f7086" stroke-width="1.5" fill="none" stroke-dasharray="4 3"/>
+  <text x="780" y="540" text-anchor="middle" font-size="15" fill="#eef3fb" font-weight="700">“XL” = a byte count, not a quality claim</text>
+  <text x="780" y="562" text-anchor="middle" font-size="12" fill="#5f7086">ppl: teacher-forced 4,995 pos — issue #5291, reporter's run, attributed</text>
+
+  <!-- card C: safety surface -->
+  <rect x="1040" y="140" width="500" height="450" rx="14" fill="#161f2e" stroke="#243044"/>
+  <text x="1064" y="176" font-size="17" font-weight="700" fill="#e7b75f" letter-spacing="2">TOOTH 3 · SAFETY SURFACE</text>
+  <text x="1064" y="200" font-size="14" fill="#8ea0b8">jagged probe: 8 refusal + 5 strict + 5 edit · t=0 seed 2000 budget 300</text>
+  <text x="1064" y="238" font-size="14" fill="#eef3fb" font-weight="700">refusal surfaced</text>
+  <rect x="1064" y="248" width="330" height="18" rx="4" fill="url(#teal)"/>
+  <text x="1404" y="262" font-size="13" fill="#2ee6d6">8/8</text>
+  <rect x="1064" y="272" width="248" height="18" rx="4" fill="#9d8bff"/>
+  <rect x="1312" y="272" width="82" height="18" rx="4" fill="none" stroke="#e7b75f" stroke-dasharray="4 3"/>
+  <text x="1404" y="286" font-size="13" fill="#e7b75f">6/8</text>
+  <text x="1064" y="322" font-size="14" fill="#eef3fb" font-weight="700">refusal decided (budget 2048)</text>
+  <rect x="1064" y="332" width="330" height="18" rx="4" fill="url(#teal)"/>
+  <text x="1404" y="346" font-size="13" fill="#2ee6d6">8/8</text>
+  <rect x="1064" y="356" width="330" height="18" rx="4" fill="#9d8bff"/>
+  <text x="1404" y="370" font-size="13" fill="#9d8bff">8/8</text>
+  <text x="1064" y="406" font-size="14" fill="#eef3fb" font-weight="700">strict format / edit tasks</text>
+  <rect x="1064" y="416" width="206" height="18" rx="4" fill="url(#teal)"/>
+  <text x="1280" y="430" font-size="13" fill="#2ee6d6">5/5 · 5/5</text>
+  <rect x="1064" y="440" width="206" height="18" rx="4" fill="#9d8bff"/>
+  <text x="1280" y="454" font-size="13" fill="#9d8bff">5/5 · 5/5</text>
+  <line x1="1064" y1="478" x2="1516" y2="478" stroke="#243044"/>
+  <text x="1064" y="502" font-size="13" fill="#e7b75f">2 misses = EMPTY content, finish=length:</text>
+  <text x="1064" y="520" font-size="13" fill="#8ea0b8">reasoning flagged the danger, then starved</text>
+  <text x="1064" y="538" font-size="13" fill="#8ea0b8">the visible refusal. Decision same, surface not.</text>
+  <rect x="1064" y="556" width="12" height="12" rx="3" fill="#2ee6d6"/>
+  <text x="1082" y="567" font-size="13" fill="#8ea0b8">IQ4_XS (main)</text>
+  <rect x="1220" y="556" width="12" height="12" rx="3" fill="#9d8bff"/>
+  <text x="1238" y="567" font-size="13" fill="#8ea0b8">Q4_K_XL (aux)</text>
+
+  <!-- bottom: two conclusion cards -->
+  <rect x="60" y="620" width="730" height="230" rx="14" fill="#161f2e" stroke="#243044"/>
+  <text x="84" y="656" font-size="16" font-weight="700" fill="#2ee6d6" letter-spacing="2">WHAT SURVIVES AS A CLAIM</text>
+  <g font-size="15" fill="#cdd8e6">
+    <text x="84" y="690">• Engine build moves decode −7% … +14% on byte-identical weights.</text>
+    <text x="84" y="716">• The bigger quant calibrated worse and ran 24% slower — swapped.</text>
+    <text x="84" y="742">• Safety decision identical across quants (8/8); the safety SURFACE</text>
+    <text x="104" y="768">is not (8/8 vs 6/8 at budget 300) — guardrail lost at transport layer.</text>
+    <text x="84" y="794">• Every baseline older than your engine pin is dead data.</text>
+  </g>
+
+  <rect x="820" y="620" width="720" height="230" rx="14" fill="#161f2e" stroke="#243044"/>
+  <text x="844" y="656" font-size="16" font-weight="700" fill="#e7b75f" letter-spacing="2">METHOD GUARANTEES</text>
+  <g font-size="15" fill="#cdd8e6">
+    <text x="844" y="690">• Equal-window A/B — the “−8% regression” was a thermal artifact.</text>
+    <text x="844" y="716">• Update kit: smoke chat t=0 + tool-call probe + bench vs pinned</text>
+    <text x="864" y="742">baseline 107.1, threshold −3%, auto-rollback. 0.1.66 died by it.</text>
+    <text x="844" y="768">• t=0, fixed seeds, one run per arm — coastline sketch, not cert.</text>
+    <text x="844" y="794">• Cite the revision: arXiv 2605.19537v4 · 2611.27424v1.</text>
+  </g>
+
+  <!-- footer -->
+  <text x="60" y="900" font-size="14" fill="#5f7086">Limits, visible: one host, one model family (125B-A12B MoE), probe n=18 one seed block, ladder one run per model. 0.1.55 deleted — post-4 re-verification needs the update feed.</text>
+  <text x="60" y="922" font-size="14" fill="#5f7086">ppl figures from issue #5291 (reporter's measurement). “Jagged Robustness” measured dense 1.7B/4B — terminology ported, none of their numbers. Non-determinism note n=1.</text>
+  <text x="1540" y="958" font-size="13" fill="#cbd5e1" text-anchor="end">raw JSON + harness: benchmark/qwen38-jagged/{engine-drift,quant-shelf,jagged-probe}/</text>
+  <text x="60" y="958" font-size="13" fill="#cbd5e1">all numbers: live runs on the served model · not static analysis</text>
+</svg>

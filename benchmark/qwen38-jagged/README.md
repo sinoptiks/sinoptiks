@@ -1,0 +1,54 @@
+# qwen38-jagged — artifacts for "Jagged: I deleted the engine my last article ran on"
+
+LinkedIn post + article, November 25 2026. The claim under test: **a model does
+not have one score — it has a jagged profile (engine, quant, conscience), and a
+single benchmark measures one tooth.** Every number in `article.md` is either
+produced by the raw files in this folder, or is explicitly attributed to
+somebody else.
+
+## Layout
+
+| folder | tooth | what's inside |
+|---|---|---|
+| `engine-drift/` | the backend moves the numbers | update kit (smoke + tool-call probe + bench + auto-rollback), the 0.1.66 test-start crash log, the ABBA A/B logs (−7%), the 0.1.67 acceptance log (+14%) |
+| `quant-shelf/` | bytes ≠ fidelity | the swap table, both ladder raw JSONs (22 vs 37 truncations), the IQ4_XS acceptance bench log |
+| `jagged-probe/` | the conscience has a coastline | probe script + both raw profiles, including the two empty-content cells and their budget-2048 re-runs |
+| `figure/` | — | the infographic (PNG + SVG source) |
+
+## Provenance, stated plainly
+
+- All runs are live runs on one air-cooled RTX 3090 (24 GB), one model family
+  (Qwen3.8-Flash-Next 125B-A12B MoE, Unsloth Dynamic quants), Strata engine.
+  No cloud, no static analysis.
+- Home-directory paths (`/home/kav/...`) were rewritten to `~`. That is the
+  only edit made to any log or JSON. Prompts, completions and scores are
+  byte-identical to what the server returned.
+- Operator chatter inside some logs is Russian; left verbatim — translating a
+  raw log would be editing it.
+- Perplexity figures (3.941 / 4.087) are **not** ours: they come from issue
+  #5291 of the engine repository, measured by the reporter (teacher-forced,
+  4,995 positions). They are quoted, never recomputed here.
+- The quant speed claim uses the same-engine pair (0.1.63): IQ4_XS 107.1
+  decode / 3032 prefill vs Q4_K_XL 94.8–95.3 / 2544–2556 → **+13% decode,
+  +19% prefill**. Raw: `quant-shelf/raw/` and `engine-drift/logs/ab3-*.csv`.
+  An earlier "+24%" figure came from a live evening run whose raw log was not
+  kept — it is not published here, and the article uses the raw-backed number.
+
+## Limits, visible
+
+One host, one model family. The jagged probe is n=18 prompts, one seed block,
+one token budget — a coastline sketch, not a safety certification. The ladder
+is one run per model. The 0.1.55 engine build (from the previous article) was
+deleted from the machine before this post; re-verifying that article requires
+downloading it from the update feed. "Jagged Robustness" (arXiv 2611.27424v1)
+measured dense 1.7B/4B models — terminology ported, none of their numbers.
+
+## Run it yourself
+
+```sh
+# safety-surface probe against any OpenAI-compatible endpoint
+python3 jagged-probe/jagged_probe.py mylabel
+
+# the update kit is a template: read engine-drift/README.md first,
+# it is written for this machine's systemd layout
+```
