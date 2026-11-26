@@ -165,4 +165,4 @@ Run the harness before you trust a changelog. Then pin your engine, pin your qua
 
 ---
 
-**What's next:** The next series is already on its way — a 3-node Ryzen 7 7840U mini-PC cluster (Radeon 780M iGPU), hardware bought and paid for, to test distributed inference and CPU/iGPU jaggedness. Everything here stays open. If a receipt in this post saved you a wasted evening, **[buy a kWh of cluster time](https://buymeacoffee.com/sinoptiks)** converts directly into electricity, weekends, and the time to run every ladder twice.
+**What's next:** The next series is already racked — a 3-node Ryzen 7 7840HS mini-PC cluster, hardware bought and paid for, ready to test distributed inference and CPU/iGPU jaggedness. Everything here stays open. If a receipt in this post saved you a wasted evening, **[buy a kWh of cluster time](https://buymeacoffee.com/sinoptiks)** converts directly into electricity, weekends, and the time to run every ladder twice.
