@@ -161,3 +161,8 @@ Run the harness before you trust a changelog. Then pin your engine, pin your qua
 - "The Quantized Conscience" (Nov 2) — the prequel; its engine build is now a ghost, which is rather the point.
 
 *Numbers in first comment. If your stack has a build number you're proud of, put it in your README — it's the cheapest reproducibility claim there is.*
+
+
+---
+
+**What's next:** The next series is already on its way — a 3-node Ryzen 7 7840U mini-PC cluster (Radeon 780M iGPU), hardware bought and paid for, to test distributed inference and CPU/iGPU jaggedness. Everything here stays open. If a receipt in this post saved you a wasted evening, **[buy a kWh of cluster time](https://buymeacoffee.com/sinoptiks)** converts directly into electricity, weekends, and the time to run every ladder twice.
