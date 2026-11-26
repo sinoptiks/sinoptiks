@@ -12,11 +12,11 @@ machine anyway.
 | perplexity (teacher-forced, 4,995 pos) | **3.941** | 4.087 | +0.146 worse |
 | decode t/s (engine 0.1.63) | **107.1** | 94.8 / 95.3 | **+13% for IQ4_XS** |
 | prefill t/s (engine 0.1.63) | **3032** | 2544 / 2556 | **+19% for IQ4_XS** |
-| decode t/s (engine 0.1.67) | **117.5** | 96.7 | **+21.5% for IQ4_XS** |
+| decode t/s (engine 0.1.67, two runs) | **117.5 / 115.9** | 96.7 / 94.9 | **+21.5% / +22.1% for IQ4_XS** |
 | prefill t/s (engine 0.1.67) | **1723** | 1291 | **+33.5% for IQ4_XS** |
 | context on the same 24 GB card | 262,144 | 131,072 | 2× |
 | edit ladder, TRUNCATED (old family) | 37 | **22** | Q4_K_XL wins |
-| edit ladder, TRUNCATED (new 8×5 family, 0.1.67) | **9** | 17 | IQ4_XS wins — direction flipped |
+| edit ladder, TRUNCATED (new 8×5 family, 0.1.67, two draws) | **9 / 10** | 17 / 14 | IQ4_XS wins — direction flipped, held |
 
 The perplexity row is **not our measurement** — it is issue #5291 of the
 engine repository, teacher-forced over 4,995 positions, measured by the

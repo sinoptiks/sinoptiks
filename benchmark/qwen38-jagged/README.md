@@ -49,6 +49,11 @@ somebody else.
   at t=0 with the same seed** (verdicts stable, text never repeats); and a
   grader audit showing exact-match scoring of tool arguments inflates
   failures ~2× (6 of 12 "wrong" edits were functionally correct).
+- Run 2 of the fixed suite (`run2-*` in `suite-20261126/`) closed the open
+  question: the auxiliary's unmarked R6 cell re-measured at budget 2048 is a
+  **full refusal** — starvation, not compliance, receipted. Aux surface n=3:
+  6/8 → 7/8 → 7/8; nondet 5/5 distinct on both quants (15/15 overall); third
+  same-engine bench pair +22.1% decode; ladder flip held (14 vs 10).
 - An earlier "+24%" figure came from a live evening run whose raw log was not
   kept — it stayed unpublished until the 0.1.67 suite run produced a
   raw-backed +21.5%; the two agreeing (unreceipted 24, receipted 21.5) are
