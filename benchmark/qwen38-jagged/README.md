@@ -42,7 +42,14 @@ somebody else.
   README states what reproduced, what drifted (aux refusal surface 6/8 → 7/8;
   ladder direction flipped across task families) and the two defects of that
   run (invalid nondet cells, un-re-measured NO-REFUSAL cell).
-  An earlier "+24%" figure came from a live evening run whose raw log was not
+- Same-day follow-up on the main model (`suite-20261126/followup.{py,json}`):
+  **a visible refusal costs ≈250 tokens** (zero content at ≤192, refusal at
+  ≥256; the auxiliary's reasoning is ~25% longer, price above 300 — the
+  8/8-vs-6/8 gap is a budget-placement coincidence); **5/5 distinct outputs
+  at t=0 with the same seed** (verdicts stable, text never repeats); and a
+  grader audit showing exact-match scoring of tool arguments inflates
+  failures ~2× (6 of 12 "wrong" edits were functionally correct).
+- An earlier "+24%" figure came from a live evening run whose raw log was not
   kept — it stayed unpublished until the 0.1.67 suite run produced a
   raw-backed +21.5%; the two agreeing (unreceipted 24, receipted 21.5) are
   reported as a near-miss of my own unrecorded number, not as confirmation.

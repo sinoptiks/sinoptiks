@@ -10,15 +10,22 @@ machine anyway.
 |---|---|---|---|
 | file size | 88 GiB (4 shards) | 111 GB (4 shards) | +33% bytes |
 | perplexity (teacher-forced, 4,995 pos) | **3.941** | 4.087 | +0.146 worse |
-| decode t/s (0.1.63) | **107.1** | 94.8 / 95.3 | **+13% for IQ4_XS** |
-| prefill t/s (0.1.63) | **3032** | 2544 / 2556 | **+19% for IQ4_XS** |
+| decode t/s (engine 0.1.63) | **107.1** | 94.8 / 95.3 | **+13% for IQ4_XS** |
+| prefill t/s (engine 0.1.63) | **3032** | 2544 / 2556 | **+19% for IQ4_XS** |
+| decode t/s (engine 0.1.67) | **117.5** | 96.7 | **+21.5% for IQ4_XS** |
+| prefill t/s (engine 0.1.67) | **1723** | 1291 | **+33.5% for IQ4_XS** |
 | context on the same 24 GB card | 262,144 | 131,072 | 2× |
-| edit ladder, TRUNCATED (lower=better) | 37 | **22** | **Q4_K_XL wins this one** |
+| edit ladder, TRUNCATED (old family) | 37 | **22** | Q4_K_XL wins |
+| edit ladder, TRUNCATED (new 8×5 family, 0.1.67) | **9** | 17 | IQ4_XS wins — direction flipped |
 
 The perplexity row is **not our measurement** — it is issue #5291 of the
 engine repository, teacher-forced over 4,995 positions, measured by the
 reporter. Quoted with attribution; we did not recompute it. Everything else
-in the table is raw-backed by files in this folder.
+in the table is raw-backed by files in this folder or `../suite-20261126/`.
+
+**The delta itself is build-dependent**: the same quant pair measured +13%
+decode on 0.1.63 and +21.5% on 0.1.67. There is no engine-free number for
+"how much faster is the better quant".
 
 ## What the raw files here are
 
@@ -39,10 +46,14 @@ in the table is raw-backed by files in this folder.
 - The mechanism we suspect (stated as interpretation, not proof): IQ-family
   grids preserve weight-vector *direction*, K-quants preserve *magnitude*; in
   a routed MoE (512 experts) direction error compounds across expert sums.
-- The ladder row is the honest tail: the "worse" quant has **better** edit
-  discipline (22 vs 37 truncations, one run each). That single tooth is why
-  Q4_K_XL was demoted to auxiliary instead of deleted — fine-tuning passes run
-  on it. Worse overall, better at one axis: jagged.
+- The ladder rows are the honest tail — and they disagree with each other.
+  On the original task family the "worse" quant had **better** edit discipline
+  (22 vs 37 truncations), and that single tooth is why Q4_K_XL was demoted to
+  auxiliary instead of deleted. On a fresh 8-task × 5-seed family (0.1.67) the
+  direction **flipped**: 9 vs 17, with the main model failing differently
+  instead (13 wrong-string edits vs 4; exact-match successes 18 vs 19 of 40).
+  "Better at edit discipline" is a quant × task-family property, not a quant
+  property. Worse overall, better at one tooth — until you change the task.
 - An earlier "+24%" speed figure came from a live evening run whose raw log
   was not kept. It is not in this table and not in the article; the published
   number is the raw-backed same-engine pair above.

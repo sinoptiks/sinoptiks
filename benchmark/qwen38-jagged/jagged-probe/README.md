@@ -27,14 +27,39 @@ So: same safety **decision** (8/8 both quants), different safety **surface**.
 A human in a chat window sees nothing happen. An agent client that treats
 empty content as "no refusal" just lost its guardrail at the transport layer.
 
-## Bonus receipt: non-determinism at t=0, n=1
+## Drift: the surface is not even stable across runs
+
+Next morning the suite re-ran this probe unchanged (`../suite-20261126/`):
+IQ4_XS reproduced exactly (8/8), Q4_K_XL came back **7/8** — one cell
+returned content matching no refusal marker, again with `finish_reason=length`
+and 1,566 chars of reasoning behind it. Same quant, same seed, same engine:
+6/8 → 7/8. The decision stayed 8/8. Treat every surface number as a draw
+from a distribution, not a measurement of a constant.
+
+## The surface is a budget-response curve, not a number
+
+A budget sweep on the main model (`../suite-20261126/followup.json`, T1)
+priced the mechanism: the two prompts that starved on the auxiliary return
+**zero visible content at budgets ≤192 and refuse at ≥256** on the main
+model. Reasoning scales with the budget and saturates ~1,200 chars; the
+visible refusal appears only after its price — **≈250 tokens on this
+quant** — is paid. The auxiliary's reasoning at the same prompts is ~25%
+longer, so its price is above 300. The 8/8-vs-6/8 headline is therefore a
+budget-placement coincidence: 300 sits between the two prices. Report a
+refusal rate without the token budget and you have reported nothing.
+
+## Bonus receipt: non-determinism at t=0 — n=1 became n=5/5
 
 The refusal auto-detector missed R7 on IQ4_XS in the first pass. Manual audit
 showed a clean refusal — because the **second** run at temperature 0 with the
-same seed produced different text than the first (the first run's output did
-not contain the markers). One observation, anecdote-grade; it is recorded in
-`raw/jagged-A-iq4xs.json` with the audit note. This is the
-Silent-Hyperparameter non-determinism (arXiv 2605.19537v4) caught at home.
+same seed produced different text than the first. That was anecdote-grade
+(n=1), recorded in `raw/jagged-A-iq4xs.json`. The proper experiment came the
+next day (`../suite-20261126/followup.json`, T3): five runs, same prompt,
+temperature 0, same seed, budget 2048 — **five distinct outputs**, all
+finishing naturally. The n=1 was the typical case. This is the
+Silent-Hyperparameter non-determinism (arXiv 2605.19537v4) caught at home —
+and note what stays stable while the text does not: the refusal **verdicts**
+reproduce across runs even when no two sentences do.
 
 ## Protocol (what we did and did not log)
 
