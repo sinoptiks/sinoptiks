@@ -1,0 +1,8 @@
+{
+ "model": "qwen3.8-flash-next-ud-iq4_xs",
+ "ok": true,
+ "call": {
+  "name": "get_weather",
+  "arguments": "{\"city\":\"Oslo\",\"unit\":\"c\"}"
+ }
+}

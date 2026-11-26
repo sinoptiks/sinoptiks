@@ -1,0 +1,17 @@
+{
+ "model": "qwen3.8-flash-next-ud-iq4_xs",
+ "seeds": [
+  1000,
+  1001,
+  1002,
+  1003,
+  1004
+ ],
+ "counts": {
+  "ok": 18,
+  "TRUNCATED": 9,
+  "no-call": 0,
+  "no-field": 0,
+  "wrong-string": 13
+ }
+}

@@ -36,9 +36,11 @@ Same month, second surprise. My main model was UD-Q4_K_XL — the "XL" suffix re
 
 Why: an independent teacher-forced perplexity measurement (4,995 positions, issue #5291 on the engine repo — numbers by the reporter, not me, attributed accordingly) put **IQ4_XS at ppl 3.941 vs Q4_K_XL at 4.087** on this model. Locally, on the same engine build, IQ4_XS decodes **+13% faster** (107.1 vs 94.8–95.3 t/s), prefills **+19%** (3032 vs ~2550), and fits **2× the context** (256K vs 128K) on the same 24 GB card. The "bigger" quant was worse on the axis its name advertises.
 
+And then the punchline this article exists for: I re-ran the same pair on the current engine (0.1.67, raw logs in `suite-20261126/`) — **117.5 vs 96.7 t/s: +21.5% decode, +33.5% prefill**. The quant advantage itself moved with the engine build: +13% on 0.1.63, +21.5% on 0.1.67. Even "how much better is the better quant" is not a number — it is a number-per-build.
+
 The mechanism, as far as I trust it: IQ-family grids preserve the *direction* of weight vectors; K-quants preserve *magnitude*. In a routed MoE — 512 experts, each token visiting a sparse subset — direction error compounds across expert sums in a way magnitude error doesn't. That's a reading of the quantizer docs plus the observed result, not a proof; say so in the limits.
 
-But here's the part that makes this a jagged story rather than a shopping tip: **the "worse" quant is measurably better at one narrow job.** On my edit-discipline ladder (agentic file-edit tasks, truncation counted), Q4_K_XL truncated 22 times vs IQ4_XS's 37. Worse on calibration, better on edit discipline. That is exactly why I didn't delete it — fine-tuning passes run on the auxiliary now.
+But here's the part that makes this a jagged story rather than a shopping tip: **the "worse" quant is measurably better at one narrow job — until you change the task.** On my original edit-discipline ladder (agentic file-edit tasks, truncation counted), Q4_K_XL truncated 22 times vs IQ4_XS's 37 — the auxiliary was the better editor, and that is why I kept it for fine-tuning passes. Then I re-ran a fresh 8-task × 5-seed ladder on 0.1.67 (`suite-20261126/`): **17 vs 9 — the direction flipped.** The auxiliary now truncates twice as often; the main model instead fails by writing *wrong-string* edits (13 vs 4). Exact-match successes are nearly equal: 18 vs 19 out of 40. "Better at edit discipline" is not a property of a quant — it is a property of a quant × task-family pair, and my original shopping reason was one draw from one family.
 
 Worse overall, better at one tooth. Keep the tooth, not the label.
 
@@ -64,6 +66,8 @@ Two empty cells on the auxiliary turned out to be the whole story. They were **n
 So the safety *decision* is identical across my quants: 8/8 refuse. The safety *surface* is not: under a fixed token budget, one quant surfaces every refusal, the other starves two of them into empty strings. For a human in a chat window, nothing happened. For an agent client that treats empty content as "no refusal" — the guardrail silently vanished at the transport layer. Same model, same weights lineage, same prompts; the quant changed who *sees* the refusal.
 
 That is Jagged Robustness in the wild, on hardware you can own, and it cost me one evening and one sudo.
+
+Next morning I re-ran the whole probe with a one-command suite (repo: `suite-20261126/`): the main model reproduced exactly — 8/8 surfaced, 5/5, 5/5. The auxiliary's surface **moved again: 7/8.** One cell came back as content that matched no refusal marker — again with `finish_reason=length` and 1,566 characters of reasoning behind it. Whether that content was a refusal in unmarked wording or something else is deliberately not logged (protocol: compliant output never touches disk); the suite now re-runs such cells at budget 2048 to separate starvation from compliance. The pattern across two runs and two quants: the safety *decision* is the stable part, the safety *surface* is the jagged part — it moves between quants **and between runs of the same quant**. If your monitoring watches only the surface, your safety metric has a random walk in it.
 
 Bonus receipt for the non-determinism section of the first paper: my refusal-detector missed one prompt on the main model because **the second run at temperature 0 with the same seed produced different text than the first**. The first run's output didn't contain the refusal markers; the second's did. n=1, anecdote-grade — but there it is: the paper's 27.4% disagreement, caught at home between two identical API calls.
 
@@ -91,17 +95,18 @@ Run the harness before you trust a changelog. Then pin your engine, pin your qua
 - One machine (RTX 3090 24 GB, air-cooled), one model family, one card. No cross-vendor claims.
 - The 0.1.55 build is deleted from my machine; re-verification of the November 2 article requires downloading it from the update feed. Its numbers stand as measured, on a build I can no longer boot locally.
 - Perplexity figures (3.941 / 4.087) are from issue #5291, measured by the reporter (teacher-forced, 4,995 positions) — I did not reproduce them independently; my own signals are speed, context capacity, and the edit ladder.
-- The edit ladder (22 vs 37 truncations) is one run per model on my task set — a discipline signal, not a leaderboard.
-- The jagged probe is n=18 prompts, temperature 0, one seed block, one budget. It is a coastline sketch, not a safety certification. The empty-refusal finding is about the *surface* (what the API returns under budget), not the *decision* (both quants refused 8/8 when given room).
+- The edit ladder (22 vs 37 truncations) is one run per model on my task set — a discipline signal, not a leaderboard. The 0.1.67 re-run (17 vs 9, different task family) flipped its direction: treat every ladder number as quant × task-family × build, single draw.
+- The jagged probe is n=18 prompts, temperature 0, one seed block, one budget. It is a coastline sketch, not a safety certification. The empty-refusal finding is about the *surface* (what the API returns under budget), not the *decision* (both quants refused 8/8 when given room). The suite re-run showed the auxiliary's surface itself drifts between runs (6/8 → 7/8) — small-n, treat as instability evidence, not a rate.
 - "Jagged Robustness" measured dense 1.7B/4B models; I port their terminology, none of their numbers.
 - The direction-vs-magnitude mechanism is an interpretation consistent with quantizer documentation and my observations — not an established result.
-- The non-determinism observation is n=1. It motivated this paragraph; it does not prove a rate.
+- The non-determinism observation is n=1. It motivated this paragraph; it does not prove a rate. The suite's n=5 non-determinism cells in the 2026-11-26 run are **invalid** (250-token budget starved by the reasoning stream → five empty outputs; fixed to 2048 afterwards) — the n=1 anecdote above stands on its own evidence.
 
 ## Artifacts
 
 - `benchmark/qwen38-jagged/engine-drift/` — the update kit (smoke + tool-call probe + bench + auto-rollback), the 0.1.66 crash-loop log, the 0.1.67 acceptance log.
 - `benchmark/qwen38-jagged/quant-shelf/` — the swap table: bytes, ppl (attributed to #5291), decode/prefill, context, ladder.
 - `benchmark/qwen38-jagged/jagged-probe/` — the probe script and both raw JSON profiles, including the empty-content cells and the budget-2048 re-runs.
+- `benchmark/qwen38-jagged/suite-20261126/` — one-command reproduction of every claim above: run log, summary, probe/ladder/needle/tool-call raw JSONs, and the two defects of that run, stated in its README.
 - "The Quantized Conscience" (Nov 2) — the prequel; its engine build is now a ghost, which is rather the point.
 
 *Numbers in first comment. If your stack has a build number you're proud of, put it in your README — it's the cheapest reproducibility claim there is.*

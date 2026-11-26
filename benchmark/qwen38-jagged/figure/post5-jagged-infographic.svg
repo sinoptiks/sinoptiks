@@ -50,7 +50,7 @@
   <circle cx="680" cy="300" r="16" fill="#2ee6d6"/>
   <text x="680" y="270" text-anchor="middle" font-size="17" font-weight="700" fill="#eef3fb">IQ4_XS</text>
   <text x="680" y="332" text-anchor="middle" font-size="14" fill="#cdd8e6">88 GB · ppl 3.941</text>
-  <text x="680" y="352" text-anchor="middle" font-size="13" fill="#2ee6d6">+13% decode · 2× context</text>
+  <text x="680" y="352" text-anchor="middle" font-size="13" fill="#2ee6d6">+13→21% decode · 2× context</text>
   <text x="680" y="370" text-anchor="middle" font-size="13" fill="#5f7086">→ MAIN</text>
   <!-- Q4_K_XL -->
   <circle cx="900" cy="420" r="16" fill="#9d8bff"/>

@@ -31,11 +31,21 @@ somebody else.
 - Perplexity figures (3.941 / 4.087) are **not** ours: they come from issue
   #5291 of the engine repository, measured by the reporter (teacher-forced,
   4,995 positions). They are quoted, never recomputed here.
-- The quant speed claim uses the same-engine pair (0.1.63): IQ4_XS 107.1
-  decode / 3032 prefill vs Q4_K_XL 94.8–95.3 / 2544–2556 → **+13% decode,
-  +19% prefill**. Raw: `quant-shelf/raw/` and `engine-drift/logs/ab3-*.csv`.
+- The quant speed claim uses same-engine pairs, both raw-backed:
+  **0.1.63**: IQ4_XS 107.1 decode / 3032 prefill vs Q4_K_XL 94.8–95.3 /
+  2544–2556 → +13% decode, +19% prefill (`quant-shelf/raw/`,
+  `engine-drift/logs/ab3-*.csv`). **0.1.67**: 117.5 / 1723 vs 96.7 / 1291 →
+  **+21.5% decode, +33.5% prefill** (`suite-20261126/`). The delta itself is
+  build-dependent — that is part of the article's point.
+- `suite-20261126/` is a one-command autonomous reproduction of every claim
+  (bench both quants, jagged probe, edit ladder, needle, tool-call). Its
+  README states what reproduced, what drifted (aux refusal surface 6/8 → 7/8;
+  ladder direction flipped across task families) and the two defects of that
+  run (invalid nondet cells, un-re-measured NO-REFUSAL cell).
   An earlier "+24%" figure came from a live evening run whose raw log was not
-  kept — it is not published here, and the article uses the raw-backed number.
+  kept — it stayed unpublished until the 0.1.67 suite run produced a
+  raw-backed +21.5%; the two agreeing (unreceipted 24, receipted 21.5) are
+  reported as a near-miss of my own unrecorded number, not as confirmation.
 
 ## Limits, visible
 
