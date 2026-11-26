@@ -10,7 +10,7 @@ machine anyway.
 
 | | UD-IQ4_XS | UD-Q4_K_XL | delta |
 |---|---|---|---|
-| file size | 88 GiB (4 shards) | 111 GB (4 shards) | +33% bytes |
+| file size | 87.2 GiB (4 shards) | 103.7 GiB (4 shards) | +19% bytes |
 | perplexity (teacher-forced, 4,995 pos) | **3.941** | 4.087 | +0.146 worse |
 | decode t/s (engine 0.1.63) | **107.1** | 94.8 / 95.3 | **+13% for IQ4_XS** |
 | prefill t/s (engine 0.1.63) | **3032** | 2544 / 2556 | **+19% for IQ4_XS** |
@@ -44,7 +44,7 @@ decode on 0.1.63 and +21.5% on 0.1.67. There is no engine-free number for
 ## Reading it honestly
 
 - "XL" in a quant name is a byte count, not a quality claim. On this model the
-  33%-bigger file calibrates worse and runs 13% slower.
+  19%-bigger file calibrates worse and runs 13% slower.
 - The mechanism we suspect (stated as interpretation, not proof): IQ-family
   grids preserve weight-vector *direction*, K-quants preserve *magnitude*; in
   a routed MoE (512 experts) direction error compounds across expert sums.

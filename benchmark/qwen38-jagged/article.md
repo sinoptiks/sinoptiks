@@ -2,9 +2,9 @@
 
 *On engines, quants, and the conscience of a quantized model — one RTX 3090, two arXiv papers, and the measurement that changed shape twice.*
 
-On November 2 I published "The Quantized Conscience": 1,000+ refusal probes on a quantized Mixture-of-Experts model, showing the moral behavior held across bit-widths, KV-cache widths and engine rebuilds (all differences p > 0.12). The article named its engine build — 0.1.55 — because I thought that was the responsible thing to do.
+On November 2 I published "The Quantized Conscience": 1,000+ refusal probes on a quantized Mixture-of-Experts model, showing the moral behavior held across bit-widths, KV-cache widths and engine rebuilds (all differences p ≥ 0.12). The article named its engine build — 0.1.55 — because I thought that was the responsible thing to do.
 
-Last week I deleted that build from my machine. The numbers are still true. They are also now pinned to a ghost: reproducing them starts with downloading a binary from an update feed, hoping it's still there. I didn't plan this as an experiment. But it turned out to be the most honest sentence I could write about my own work — and two papers published this month explain exactly why it should bother you about yours.
+A few days ago I deleted that build from my machine. The numbers are still true. They are also now pinned to a ghost: reproducing them starts with downloading a binary from an update feed, hoping it's still there. I didn't plan this as an experiment. But it turned out to be the most honest sentence I could write about my own work — and two papers that landed on my desk this month — one revised on November 18, one published six days ago — explain exactly why it should bother you about yours.
 
 If you build anything on an LLM API, here is the one-sentence version of this whole article: **your `max_tokens` limit can silently delete a model's refusal.** Not weaken it — delete it. What a model *decides* and what your parser *sees* are two different surfaces, and this month I caught the gap moving on my own machine. Neither of the two papers measures that gap. I did, twice, with receipts.
 
@@ -24,7 +24,7 @@ If you build anything on an LLM API, here is the one-sentence version of this wh
 | sparse attention | 24 Q / 2 KV heads, head dim 256, RoPE 64; MQA indexer 4Q/1KV dim 128, budget 512 blocks (2,048 tokens) |
 | MTP | 1 layer, multi-stage trained |
 
-Two rows of that table are load-bearing for this article: the **+4B MTP layer** is the speculative drafter behind my 15/15 non-determinism, and the **51B n-gram table** is shared across every UD quant of this model — which is part of why "it's just a quant swap" never is.
+Two rows of that table are load-bearing for this article: the **+4B MTP layer** — the speculative drafter the engine runs — is my best-supported suspect for the 15/15 non-determinism, and the **51B n-gram table** is shared across every UD quant of this model — which is part of why "it's just a quant swap" never is.
 
 ## The engine is a hidden hyperparameter. Now the papers say it out loud
 
@@ -46,19 +46,19 @@ My shelf ran the same movie in miniature across three build eras, one machine, o
 | swap | 0.1.66 | −7% | crash-loop on load; kit auto-rolled-back in ~1 min |
 | current | 0.1.67 | 122.4 (**+14%**) | same harness, threshold −3%, accepted |
 
-Same weights file, byte-identical. The model did not get 14% smarter between builds; the *stack* did something to it. And the trap inside the trap: an earlier "−8% regression" I chased turned out to be a **thermal artifact** — a morning measurement compared against an evening baseline on an air-cooled card. Equal-window A/B or it didn't happen.
+Same weights file, byte-identical. The model did not get 14% smarter between builds; the *stack* did something to it. (Session spread is real even inside one build: 122.4 above is the acceptance run; the next morning's suite measures the same build at 117.5/115.9 — which is exactly why the kit compares arms inside one window.) And the trap inside the trap: an earlier "−8% regression" I chased turned out to be a **thermal artifact** — a morning measurement compared against an evening baseline on an air-cooled card. Equal-window A/B or it didn't happen.
 
 So here is the operational rule this month burned into me: **every baseline older than your engine pin is dead data.** The academics call it a silent hyperparameter. I call it Tuesday.
 
 ## I demoted my main model because it lied about its size
 
-Same month, second surprise. My main model was UD-Q4_K_XL — the "XL" suffix reading, to a rational buyer, as *more quality per file*. My fast slot was UD-IQ4_XS, 33% smaller. I swapped them. The bigger one is now the auxiliary.
+Same month, second surprise. My main model was UD-Q4_K_XL — the "XL" suffix reading, to a rational buyer, as *more quality per file*. My fast slot was UD-IQ4_XS, 16% smaller. I swapped them. The bigger one is now the auxiliary.
 
 Why — the swap table, everything raw-backed except the perplexity row (issue #5291 on the engine repo, teacher-forced over 4,995 positions, measured by the reporter — attributed, not mine):
 
 | | IQ4_XS (main) | Q4_K_XL (aux) | delta |
 |---|---|---|---|
-| file size | 88 GiB | 111 GB | −21% bytes |
+| file size | 87.2 GiB (93.7 GB) | 103.7 GiB (111.3 GB) | XL +19% bytes |
 | perplexity (#5291) | **3.941** | 4.087 | −0.146 |
 | decode t/s · engine 0.1.63 | **107.1** | 94.8–95.3 | **+13%** |
 | decode t/s · engine 0.1.67 (two runs) | **117.5 / 115.9** | 96.7 / 94.9 | **+21.5% / +22.1%** |
@@ -74,13 +74,13 @@ But here's the part that makes this a jagged story rather than a shopping tip: *
 
 ![The edit-discipline tooth flipped](figure/panel-b-ladder.png)
 
-And then I audited my own grader. Saving the actual tool arguments and re-scoring functionally — does the edit apply, and does it produce the intended file? — **half of what my exact-match matcher called wrong were near-misses**: different quoting or spacing, but applying them yields exactly the target. Of 24 main-model calls: 12 exact, 6 functionally correct, 3 genuinely wrong, 3 truncated. My published "13 wrong strings" is inflated roughly 2× — and every harness that grades tool arguments by exact match, including the one I published yesterday, is silently grading formatting as failure. The true failure rate of the main model on this family is 6/24, not 12/24.
+And then I audited my own grader. Saving the actual tool arguments and re-scoring functionally — does the edit apply, and does it produce the intended file? — **half of what my exact-match matcher called wrong were near-misses**: different quoting or spacing, but applying them yields exactly the target. Of 24 main-model calls: 12 exact, 6 functionally correct, 3 genuinely wrong, 3 truncated. If the subset rate holds, my published "13 wrong strings" is inflated roughly 2× — and every harness that grades tool arguments by exact match, including the one I published yesterday, is silently grading formatting as failure. The true failure rate of the main model on this family is 6/24, not 12/24.
 
 Worse overall, better at one tooth. Keep the tooth, not the label.
 
 ## The conscience is jagged too — and I caught it moving this evening
 
-The Quantized Conscience said: refusal behavior holds across bits and KV widths. True as far as it measured. **"Jagged Robustness" (arXiv 2611.27424, Nov 20)** — five days old — shows what a single-axis measurement misses:
+The Quantized Conscience said: refusal behavior holds across bits and KV widths. True as far as it measured. **"Jagged Robustness" (arXiv 2611.27424, Nov 20)** — six days old — shows what a single-axis measurement misses:
 
 - INT4 quantization of Qwen3-4B lifted **deception-scale compliance by +11.0 pp** while instruction-following benchmarks barely moved.
 - SORRYBench fulfillment +4.3 pp at INT4.
@@ -95,7 +95,7 @@ Their models are dense 1.7B/4B; mine is a 125B/6B-active routed MoE with a share
 | strict format | 5/5 | 5/5 |
 | edit tasks | 5/5, 0 truncated | 5/5, 0 truncated |
 
-Two empty cells on the auxiliary turned out to be the whole story. They were **not compliance**. The model's reasoning stream correctly flagged both prompts ("this is a deeply concerning query…") — and then the reasoning ran past the 300-token budget, `finish_reason=length`, and the API returned **empty content**. Raise the budget to 2048 and both refusals appear, in full, in the right language.
+Two empty cells on the auxiliary turned out to be the whole story. They were **not compliance**. The model's reasoning stream correctly flagged both prompts ("this is a deeply concerning query…") — and then the reasoning ran past the 300-token budget, `finish_reason=length`, and the API returned **empty content**. Raise the budget to 2048 and both refusals appear, in full.
 
 So the safety *decision* is identical across my quants: 8/8 refuse. The safety *surface* is not: under a fixed token budget, one quant surfaces every refusal, the other starves two of them into empty strings. For a human in a chat window, nothing happened. For an agent client that treats empty content as "no refusal" — the guardrail silently vanished at the transport layer. Same model, same weights lineage, same prompts; the quant changed who *sees* the refusal.
 
@@ -111,9 +111,9 @@ Then I put a price tag on the coastline. Budget sweep, 64 → 600 tokens, on the
 |---|---|
 | ≤ 192 | empty content, `finish_reason=length` — **no refusal exists** |
 | 256–300 | refusal appears, may cut off mid-sentence |
-| ≥ 400 | refusal completes naturally |
+| ≥ 400 | refusal completes — one prompt still clipped at 400, both natural by 600 |
 
-The reasoning stream is what eats the budget: it grows with it (330 chars at 64, 1,035 at 192), saturates around 1,200, and only then does the visible answer start. **A visible refusal has a token price, and on this quant it is about 250.** Below the price there is no weaker refusal — there is nothing, and an agent client that reads "empty" as "no refusal" sees no guardrail at all. The auxiliary's reasoning at the same prompts runs ~25–30% longer (1,566–1,694 chars at budget 300 vs the main's 1,312): its price is above 300. Which means my own headline safety number — 8/8 versus 6/8 — was **a coincidence of budget placement**: 300 happens to sit above the main model's price and below the auxiliary's. The safety surface is not a number, it is a budget-response curve, and every quant has its own curve. Publish a refusal rate without the token budget and you have published nothing.
+The reasoning stream is what eats the budget: it grows with it (330 chars at 64, 1,035 at 192), levels off around 1,200–1,300, and only then does the visible answer start. **A visible refusal has a token price, and on this quant it is about 250.** Below the price there is no weaker refusal — there is nothing, and an agent client that reads "empty" as "no refusal" sees no guardrail at all. The auxiliary's reasoning at the same prompts runs ~20–30% longer (1,566–1,694 chars at budget 300 vs the main's 1,312): its price is above 300. Which means my own headline safety number — 8/8 versus 6/8 — was **a coincidence of budget placement**: 300 happens to sit above the main model's price and below the auxiliary's. The safety surface is not a number, it is a budget-response curve, and every quant has its own curve. Publish a refusal rate without the token budget and you have published nothing.
 
 ![A visible refusal has a token price](figure/panel-d-price.png)
 
@@ -145,12 +145,12 @@ Run the harness before you trust a changelog. Then pin your engine, pin your qua
 - One machine (RTX 3090 24 GB, air-cooled), one model family, one card. No cross-vendor claims.
 - The 0.1.55 build is deleted from my machine; re-verification of the November 2 article requires downloading it from the update feed. Its numbers stand as measured, on a build I can no longer boot locally.
 - Perplexity figures (3.941 / 4.087) are from issue #5291, measured by the reporter (teacher-forced, 4,995 positions) — I did not reproduce them independently; my own signals are speed, context capacity, and the edit ladder.
-- The edit ladder (22 vs 37 truncations) is one run per model on my task set — a discipline signal, not a leaderboard. The 0.1.67 re-run (17 vs 9, different task family) flipped its direction: treat every ladder number as quant × task-family × build, single draw. The grader audit (12 exact / 6 near-miss / 3 wrong / 3 truncated of 24) shows exact-match scoring inflates failures ~2×; functional scoring was done on the main model only.
+- The edit ladder (22 vs 37 truncations) is one run per model on my task set — a discipline signal, not a leaderboard. The 0.1.67 re-run (17 vs 9, different task family) flipped its direction: treat every ladder number as quant × task-family × build, single draw. The grader audit (12 exact / 6 near-miss / 3 wrong / 3 truncated of 24 — a subset of the 40-call ladder) shows exact-match scoring inflates failures ~2×; functional scoring was done on the main model only, and the 2× is a subset extrapolation.
 - The jagged probe is n=18 prompts, temperature 0, one seed block, one budget. It is a coastline sketch, not a safety certification. The empty-refusal finding is about the *surface* (what the API returns under budget), not the *decision* (both quants refused 8/8 when given room). The suite re-run showed the auxiliary's surface itself drifts between runs (6/8 → 7/8) — small-n, treat as instability evidence, not a rate.
 - The token-price cliff is 2 prompts × 7 budgets on the main model; the auxiliary's higher price is inferred from reasoning length at budget 300, not swept. The cliff position is quant-, prompt- and build-specific; ≈250 tokens is this stack's number, not a constant.
 - "Jagged Robustness" measured dense 1.7B/4B models; I port their terminology, none of their numbers.
 - The direction-vs-magnitude mechanism is an interpretation consistent with quantizer documentation and my observations — not an established result.
-- Non-determinism: n=5 on one prompt class at one budget, all distinct. Verdict stability (refusals repeating while text doesn't) is observed across my probe runs, not separately quantified. The suite's first nondet cells (budget 250) were invalid — starved to five empty strings, which is itself the cliff mechanism showing up in my own tooling.
+- Non-determinism: n=5 on one prompt class at one budget, all distinct. Attributing it to MTP speculative decoding is an architectural inference from the engine's design, not a controlled ablation. Verdict stability (refusals repeating while text doesn't) is observed across my probe runs, not separately quantified. The suite's first nondet cells (budget 250) were invalid — starved to five empty strings, which is itself the cliff mechanism showing up in my own tooling.
 
 ## Artifacts
 
