@@ -1,7 +1,9 @@
 # quant-shelf — bytes ≠ fidelity, and the tooth that saved the loser
 
 Two Unsloth Dynamic quants of the same model, same engine (0.1.63), same
-harness. The bigger file lost on calibration and speed — and stayed on the
+harness. Files: `Qwen3.8-Flash-Next-UD-IQ4_XS-0000X-of-00004.gguf` and
+`Qwen3.8-Flash-Next-UD-Q4_K_XL-0000X-of-00004.gguf` from
+[unsloth/Qwen3.8-Flash-Next-GGUF](https://huggingface.co/unsloth/Qwen3.8-Flash-Next-GGUF). The bigger file lost on calibration and speed — and stayed on the
 machine anyway.
 
 ## The swap table

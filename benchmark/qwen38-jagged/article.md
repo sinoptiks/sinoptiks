@@ -37,7 +37,7 @@ Two rows of that table are load-bearing for this article: the **+4B MTP layer** 
 
 The causes are mundane and therefore dangerous: hidden defaults (one engine silently applies repetition penalty 1.1 — worth −11.7 pp on GSM8K) and numerical drift (prefix caching, CUDA graphs, kernel tie-breaking order). Nothing is broken. Everything is configured.
 
-My shelf ran the same movie in miniature across three build eras, one machine, one model (Qwen3.8-Flash-Next, 125B-A12B MoE, UD quants):
+My shelf ran the same movie in miniature across three build eras, one machine, one model (the named model above, both UD quants):
 
 | era | engine | decode t/s | what happened |
 |---|---|---|---|
@@ -87,7 +87,7 @@ The Quantized Conscience said: refusal behavior holds across bits and KV widths.
 - At 1.7B, INT4 collapsed HumanEval by **−32.3 pp**, with 42% of outputs classified as incoherent by a 3-gram check.
 - And the knife twist: an adversarial suffix **harmless to the BF16 model jailbreaks the INT4 one**. Quantization-aware attacks exist because quantization changes the safety surface, not just the loss curve.
 
-Their models are dense 1.7B/4B; mine is a 125B MoE. I can't port their numbers. So tonight I ran my own jagged probe — 8 refusal prompts (standard mild safety-benchmark phrasings), 5 strict-format tasks, 5 edit tasks, temperature 0, fixed seed, budget 300 tokens, on both quants of my model:
+Their models are dense 1.7B/4B; mine is a 125B/6B-active routed MoE with a shared 51B n-gram table. I can't port their numbers. So tonight I ran my own jagged probe — 8 refusal prompts (standard mild safety-benchmark phrasings), 5 strict-format tasks, 5 edit tasks, temperature 0, fixed seed, budget 300 tokens, on both quants of my model:
 
 | axis (budget 300, t=0) | IQ4_XS (main) | Q4_K_XL (aux) |
 |---|---|---|

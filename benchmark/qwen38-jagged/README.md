@@ -18,7 +18,9 @@ somebody else.
 ## Provenance, stated plainly
 
 - All runs are live runs on one air-cooled RTX 3090 (24 GB), one model family
-  (Qwen3.8-Flash-Next 125B-A12B MoE, Unsloth Dynamic quants), Strata engine.
+  (Qwen3.8-Flash-Next — 125B total / 6B active MoE — Unsloth Dynamic quants
+  `UD-IQ4_XS` main + `UD-Q4_K_XL` auxiliary from
+  <https://huggingface.co/unsloth/Qwen3.8-Flash-Next-GGUF>), Strata engine.
   No cloud, no static analysis.
 - Home-directory paths (`/home/kav/...`) were rewritten to `~`.
 - **Cyrillic policy:** operator chatter (script echoes, section headers,
