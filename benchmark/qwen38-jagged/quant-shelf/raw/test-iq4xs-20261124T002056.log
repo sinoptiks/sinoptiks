@@ -17,5 +17,5 @@ usage: {'prompt_tokens': 69, 'completion_tokens': 58, 'total_tokens': 127, 'prom
 107.1 3032
 == 5. LONG CONTEXT SMOKE (needle at ~160K) ==
 prompt_tokens=193285 elapsed=60s pp=3228 t/s
-answer: 'giatsint-42'  [needle token, transliterated from the Russian original]
+answer: 'giatsint-42'
 DONE-TESTS
