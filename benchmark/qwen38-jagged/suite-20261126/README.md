@@ -1,7 +1,7 @@
 # suite-20261126 — one-command reproduction of every claim in this article
 
-`run_all.sh` (top of this repo's article kit, lives at `~/article-suite/run_all.sh`
-on the lab machine) runs the whole article test matrix autonomously as root:
+`run_all.sh` (published in this folder) runs the whole article test matrix
+autonomously as root:
 it switches between the two quants itself, and a `trap` always restores the
 main model on exit — so the suite can be left unattended.
 
@@ -37,6 +37,7 @@ median, prefill n=3 median).
 
 ## Files
 
+- `run_all.sh` — the suite itself (fixed after the run: nondet budget 2048, NO-REFUSAL re-runs, UTC dir names)
 - `run-all.log` — full console log, verbatim (paths redacted `/home/kav → ~`)
 - `summary.md` — machine-generated summary
 - `probe-{A,B}-*.json` — jagged probe raw results
