@@ -10,6 +10,22 @@ If you build anything on an LLM API, here is the one-sentence version of this wh
 
 ![The whole month in four panels](figure/post5-jagged-infographic.png)
 
+**The model, named exactly.** Both quants come from [unsloth/Qwen3.8-Flash-Next-GGUF](https://huggingface.co/unsloth/Qwen3.8-Flash-Next-GGUF): main = `Qwen3.8-Flash-Next-UD-IQ4_XS` (256K context), auxiliary = `Qwen3.8-Flash-Next-UD-Q4_K_XL` (128K). Causal LM with an image encoder, pre-trained + post-trained:
+
+| spec | value |
+|---|---|
+| parameters | 125B total, **6B active** (+51B n-gram embeddings, +4B MTP) |
+| hidden × layers | 2,560 × 48 |
+| layer layout | 12 × (3 × (Gated DeltaNet → MoE) → 1 × (Qwen sparse attention → MoE)) |
+| MoE | 512 experts; 10 routed + 1 shared; expert inter 640 |
+| vocab | 248,320 (padded) |
+| n-gram embedding | 20M entries (bigram/trigram, layer 2) |
+| Gated DeltaNet | 48 V / 16 QK heads, head dim 128 |
+| sparse attention | 24 Q / 2 KV heads, head dim 256, RoPE 64; MQA indexer 4Q/1KV dim 128, budget 512 blocks (2,048 tokens) |
+| MTP | 1 layer, multi-stage trained |
+
+Two rows of that table are load-bearing for this article: the **+4B MTP layer** is the speculative drafter behind my 15/15 non-determinism, and the **51B n-gram table** is shared across every UD quant of this model — which is part of why "it's just a quant swap" never is.
+
 ## The engine is a hidden hyperparameter. Now the papers say it out loud
 
 **"The Silent Hyperparameter" (arXiv 2605.19537, v4 of Nov 18 — cite the version, it has changed)** surveyed ~200 inference engines and ~35,000 top-venue ML papers. The findings, in short:
