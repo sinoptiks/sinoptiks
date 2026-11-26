@@ -67,21 +67,25 @@
   <text x="100" y="725" font-size="14" fill="#5f7086" text-anchor="end">0</text>
   <text x="100" y="565" font-size="14" fill="#5f7086" text-anchor="end">8</text>
   <line x1="120" y1="560" x2="700" y2="560" stroke="#243044" stroke-dasharray="4 4"/>
-  <!-- IQ4_XS row: 8 -> 8 -->
+  <!-- IQ4_XS row: 8 -> 8 -> 8 -->
   <text x="140" y="596" font-size="15" fill="#8ea0b8">IQ4_XS</text>
-  <circle cx="300" cy="560" r="9" fill="#2ee6d6"/>
-  <circle cx="560" cy="560" r="9" fill="#2ee6d6"/>
-  <line x1="309" y1="560" x2="551" y2="560" stroke="#2ee6d6" stroke-width="3"/>
-  <text x="300" y="540" font-size="16" font-weight="700" fill="#2ee6d6" text-anchor="middle">8/8</text>
-  <text x="560" y="540" font-size="16" font-weight="700" fill="#2ee6d6" text-anchor="middle">8/8</text>
-  <!-- Q4_K_XL row: 6 -> 7 (scale: 8=560, 0=720, 20px/unit) -->
+  <circle cx="280" cy="560" r="9" fill="#2ee6d6"/>
+  <circle cx="430" cy="560" r="9" fill="#2ee6d6"/>
+  <circle cx="580" cy="560" r="9" fill="#2ee6d6"/>
+  <line x1="289" y1="560" x2="571" y2="560" stroke="#2ee6d6" stroke-width="3"/>
+  <text x="280" y="540" font-size="16" font-weight="700" fill="#2ee6d6" text-anchor="middle">8/8</text>
+  <text x="430" y="540" font-size="16" font-weight="700" fill="#2ee6d6" text-anchor="middle">8/8</text>
+  <text x="580" y="540" font-size="16" font-weight="700" fill="#2ee6d6" text-anchor="middle">8/8</text>
+  <!-- Q4_K_XL row: 6 -> 7 -> 7 (scale: 8=560, 0=720, 20px/unit) -->
   <text x="140" y="676" font-size="15" fill="#8ea0b8">Q4_K_XL</text>
-  <circle cx="300" cy="600" r="9" fill="#e7b75f"/>
-  <circle cx="560" cy="580" r="9" fill="#e7b75f"/>
-  <line x1="309" y1="596" x2="551" y2="584" stroke="#e7b75f" stroke-width="3" stroke-dasharray="6 4"/>
-  <text x="300" y="632" font-size="16" font-weight="700" fill="#e7b75f" text-anchor="middle">6/8</text>
-  <text x="560" y="612" font-size="16" font-weight="700" fill="#e7b75f" text-anchor="middle">7/8</text>
-  <text x="640" y="676" font-size="14" fill="#5f7086" text-anchor="end">run 1 → run 2</text>
+  <circle cx="280" cy="600" r="9" fill="#e7b75f"/>
+  <circle cx="430" cy="580" r="9" fill="#e7b75f"/>
+  <circle cx="580" cy="580" r="9" fill="#e7b75f"/>
+  <polyline points="289,596 421,584 439,580 571,580" fill="none" stroke="#e7b75f" stroke-width="3" stroke-dasharray="6 4"/>
+  <text x="280" y="632" font-size="16" font-weight="700" fill="#e7b75f" text-anchor="middle">6/8</text>
+  <text x="430" y="612" font-size="16" font-weight="700" fill="#e7b75f" text-anchor="middle">7/8</text>
+  <text x="580" y="612" font-size="16" font-weight="700" fill="#e7b75f" text-anchor="middle">7/8</text>
+  <text x="660" y="676" font-size="14" fill="#5f7086" text-anchor="end">runs 1 → 2 → 3</text>
   <text x="64" y="755" font-size="15" fill="#e7b75f">Same quant, same seed, same engine: the surface moved. Decision at budget 2048: 8/8 everywhere.</text>
 
   <!-- ============ PANEL D: token price of a visible refusal ============ -->
@@ -119,8 +123,8 @@
 
   <rect x="820" y="806" width="740" height="118" rx="14" fill="#161f2e" stroke="#e7b75f" stroke-opacity="0.5"/>
   <text x="844" y="836" font-size="16" font-weight="700" fill="#e7b75f" letter-spacing="2">WHAT MOVED IN 9 MINUTES</text>
-  <text x="844" y="864" font-size="16" fill="#eef3fb">Quant gap +13% → +21.5% · ladder direction flipped · surface 6/8 → 7/8.</text>
-  <text x="844" y="890" font-size="16" fill="#eef3fb">5/5 different texts at t=0, same seed — and half my "wrong edits" were near-misses.</text>
+  <text x="844" y="864" font-size="16" fill="#eef3fb">Quant gap +13% → +22% · ladder direction flipped · surface 6/8 → 7/8 → 7/8.</text>
+  <text x="844" y="890" font-size="16" fill="#eef3fb">15/15 different texts at t=0, same seed — and half my "wrong edits" were near-misses.</text>
 
   <!-- footer -->
   <text x="40" y="955" font-size="15" fill="#5f7086">Limits, visible: single draws per cell · one card, one model family · probe n=18 · ladder is one run per family.</text>

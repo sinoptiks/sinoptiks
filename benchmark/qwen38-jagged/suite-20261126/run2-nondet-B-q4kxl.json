@@ -1,0 +1,11 @@
+{
+ "model": "qwen3.8-flash-next-ud-q4_k_xl",
+ "hashes": [
+  "1efa6c5582f7",
+  "71282fb7743e",
+  "491e94cf9f54",
+  "5d356a7ef2be",
+  "bab997b384f9"
+ ],
+ "distinct": 5
+}
