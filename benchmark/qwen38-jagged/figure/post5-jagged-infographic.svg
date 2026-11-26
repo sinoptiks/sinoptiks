@@ -17,6 +17,7 @@
   <rect x="40" y="106" width="740" height="330" rx="14" fill="#161f2e" stroke="#243044"/>
   <text x="64" y="138" font-size="17" font-weight="700" fill="#8ea0b8" letter-spacing="2">THE QUANT GAP ITSELF MOVES WITH THE ENGINE</text>
   <text x="64" y="162" font-size="15" fill="#5f7086">decode tok/s, same weights, same harness, two builds</text>
+  <text x="756" y="162" font-size="14" fill="#5f7086" text-anchor="end">teal = IQ4_XS · violet = Q4_K_XL</text>
   <!-- group 0.1.63 -->
   <text x="185" y="404" font-size="15" fill="#8ea0b8" text-anchor="middle">engine 0.1.63</text>
   <rect x="110" y="253" width="70" height="140" fill="#2ee6d6"/>
@@ -32,7 +33,6 @@
   <text x="610" y="256" font-size="16" font-weight="700" fill="#eef3fb" text-anchor="middle">96.7</text>
   <text x="565" y="191" font-size="18" font-weight="700" fill="#2ee6d6" text-anchor="middle">+21.5%</text>
   <line x1="80" y1="393" x2="700" y2="393" stroke="#243044"/>
-  <text x="660" y="138" font-size="14" fill="#5f7086" text-anchor="end">teal = IQ4_XS · violet = Q4_K_XL</text>
   <text x="64" y="425" font-size="15" fill="#e7b75f">There is no engine-free number for "how much faster is the better quant".</text>
 
   <!-- ============ PANEL B: the ladder flipped ============ -->
